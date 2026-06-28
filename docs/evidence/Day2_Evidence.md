@@ -61,11 +61,11 @@
 
 ### 1.4 进阶任务完成情况
 
-✅ ** 看板页设计：** BoardView.vue 包含静态统计数据（在线商品/今日新增/注册用户/今日成交）的网格卡片布局，预留图表占位区域
+看板页设计： BoardView.vue 包含静态统计数据（在线商品/今日新增/注册用户/今日成交）的网格卡片布局，预留图表占位区域
 
-✅ ** 路由跳转增强：** ListView 中点击商品项 → `router.push(/detail/${id})` → DetailView 通过 `useRoute().params.id` 获取并显示 ID
+路由跳转增强： ListView 中点击商品项 → `router.push(/detail/${id})` → DetailView 通过 `useRoute().params.id` 获取并显示 ID
 
-✅ ** 原生 HTML 导航：** 项目未安装 Element Plus，使用原生 HTML + CSS 实现导航栏
+原生 HTML 导航： 项目未安装 Element Plus，使用原生 HTML + CSS 实现导航栏
 
 ---
 
