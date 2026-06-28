@@ -9,7 +9,7 @@
 | 序号 | 页面名称 | 文件路径 | 功能说明 |
 |------|----------|----------|----------|
 | 1 | 首页 | `src/views/HomeView.vue` | 商品搜索栏、分类导航（教材/数码/服饰/生活/娱乐）、热门推荐区域 |
-| 2 | 商品列表 | `src/views/ListView.vue` | 分类筛选按钮、静态示例商品列表、点击跳转详情（携带 id 参数） |
+| 2 | 商品列表 | `src/views/ListView.vue` | 分类筛选按钮、静态示例商品列表、点击跳转详情|
 | 3 | 商品详情 | `src/views/DetailView.vue` | 通过 `useRoute().params.id` 获取路由参数、商品信息展示卡片、购买/加购按钮 |
 | 4 | 商品发布 | `src/views/PublishView.vue` | 完整表单骨架：标题、描述、价格、分类下拉、提交按钮 |
 | 5 | 消息中心 | `src/views/MessageView.vue` | 消息列表（系统通知/交易提醒）、时间戳、空状态提示 |
@@ -47,11 +47,11 @@
 更新 `App.vue`，实现底部式顶部导航：
 
 **导航栏包含 5 个入口：**
-- 🏠 首页 (`/`)
-- 📋 列表 (`/list`)
-- 📝 发布 (`/publish`)
-- 💬 消息 (`/messages`)
-- 👤 我的 (`/profile`)
+-  首页 (`/`)
+-  列表 (`/list`)
+-  发布 (`/publish`)
+-  消息 (`/messages`)
+-  我的 (`/profile`)
 
 **交互特性：**
 - `router.push()` 实现 SPA 无刷新跳转
@@ -61,11 +61,11 @@
 
 ### 1.4 进阶任务完成情况
 
-✅ **⭐ 看板页设计：** BoardView.vue 包含静态统计数据（在线商品/今日新增/注册用户/今日成交）的网格卡片布局，预留图表占位区域
+✅ ** 看板页设计：** BoardView.vue 包含静态统计数据（在线商品/今日新增/注册用户/今日成交）的网格卡片布局，预留图表占位区域
 
-✅ **⭐ 路由跳转增强：** ListView 中点击商品项 → `router.push(/detail/${id})` → DetailView 通过 `useRoute().params.id` 获取并显示 ID
+✅ ** 路由跳转增强：** ListView 中点击商品项 → `router.push(/detail/${id})` → DetailView 通过 `useRoute().params.id` 获取并显示 ID
 
-✅ **⭐ 原生 HTML 导航：** 项目未安装 Element Plus，使用原生 HTML + CSS 实现导航栏
+✅ ** 原生 HTML 导航：** 项目未安装 Element Plus，使用原生 HTML + CSS 实现导航栏
 
 ---
 
@@ -134,4 +134,4 @@
 
 ---
 
-> Day2 结束。7 页面骨架 + 路由系统 + 导航栏已搭建完成，项目具备多页面访问能力。
+> Day2 结束。
