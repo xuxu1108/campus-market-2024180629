@@ -1,124 +1,143 @@
-# Day 2 Evidence — 多页面骨架 & 路由导航系统
+# Day 2 Evidence — 页面骨架、路由导航与公共布局
 
 ---
 
-## 一、今日完成内容
+## 一、本日完成内容
 
-### 1.1 新增 7 个页面（Task 1：扩展 7 大页面骨架）
+### 1.1 页面骨架搭建（Task 1）
 
-| 序号 | 页面名称 | 文件路径 | 功能说明 |
-|------|----------|----------|----------|
-| 1 | 首页 | `src/views/HomeView.vue` | 商品搜索栏、分类导航（教材/数码/服饰/生活/娱乐）、热门推荐区域 |
-| 2 | 商品列表 | `src/views/ListView.vue` | 分类筛选按钮、静态示例商品列表、点击跳转详情|
-| 3 | 商品详情 | `src/views/DetailView.vue` | 通过 `useRoute().params.id` 获取路由参数、商品信息展示卡片、购买/加购按钮 |
-| 4 | 商品发布 | `src/views/PublishView.vue` | 完整表单骨架：标题、描述、价格、分类下拉、提交按钮 |
-| 5 | 消息中心 | `src/views/MessageView.vue` | 消息列表（系统通知/交易提醒）、时间戳、空状态提示 |
-| 6 | 个人中心 | `src/views/ProfileView.vue` | 用户头像卡片、功能入口菜单（我的发布/收藏/订单/地址/设置） |
-| 7 | 数据看板 | `src/views/BoardView.vue` | 四格统计卡片（在线商品/今日新增/注册用户/今日成交）、图表占位区域 |
+根据"校园轻集市"业务需求，在 `src/views/` 下创建了 8 个核心业务页面，外加 1 个商品详情页作为扩展：
+
+| 序号 | 页面名称 | 文件路径 | 路由路径 | 业务场景 |
+|------|----------|----------|----------|----------|
+| 1 | 首页 | `src/views/HomeView.vue` | `/` | 平台入口，展示四大业务分类入口（二手交易/失物招领/拼单搭子/跑腿委托）与热门推荐区域 |
+| 2 | 二手交易 | `src/views/TradeView.vue` | `/trade` | 二手商品列表，分类筛选（教材/数码/生活/出行），静态示例数据，点击跳转详情 |
+| 3 | 失物招领 | `src/views/LostFoundView.vue` | `/lost-found` | 失物与招领信息列表，失物/招领标签区分，显示位置和时间 |
+| 4 | 拼单搭子 | `src/views/GroupBuyView.vue` | `/group-buy` | 拼单/搭子/组队信息列表，显示人数和截止时间 |
+| 5 | 跑腿委托 | `src/views/ErrandView.vue` | `/errand` | 跑腿任务与委托列表，委托/跑腿标签区分，显示报酬和地点 |
+| 6 | 发布信息 | `src/views/PublishView.vue` | `/publish` | 统一发布表单，支持选择发布类型（二手/失物/拼单/跑腿），含标题、描述、价格、校区字段 |
+| 7 | 消息中心 | `src/views/MessageView.vue` | `/message` | 消息列表（系统通知/交易消息/互动消息），支持类型筛选 |
+| 8 | 个人中心 | `src/views/UserCenterView.vue` | `/user` | 用户信息卡片，功能菜单入口（我的发布/收藏/订单/浏览记录/设置） |
+| 扩展 | 商品详情 | `src/views/DetailView.vue` | `/detail/:id` | 通过路由参数获取商品 ID，展示商品详情信息 |
+
+**与前版差异说明：** 原 Day2 实现使用了泛化的页面名称（ListView/BoardView/ProfileView），本次严格按照校园场景重新设计，页面名称和路径均与业务直接对应。废弃了 ListView.vue、BoardView.vue、ProfileView.vue 三个不匹配的旧页面。
 
 每个页面均包含：
 - `<script setup lang="ts">` 结构
-- 语义化 `<template>` 骨架
+- 语义化 `<template>` 骨架（页面标题 + 业务说明 + 静态示例数据 + 空状态提示）
 - 局部 `<style scoped>` 样式
 - 符合 Vue 3 Composition API 规范
+- 贴合校园生活场景（教材、宿舍、食堂、图书馆、校区等元素）
 
-### 1.2 路由系统设计（Task 2：完善路由系统）
+### 1.2 路由导航配置（Task 2 & 3）
 
-更新 `src/router/index.ts`，新增 7 条路由：
+**`src/router/index.ts`** 共配置 9 条路由：
 
-| 路由路径 | 路由名称 | 对应组件 | meta.title | 加载方式 |
-|----------|----------|----------|------------|----------|
-| `/` | home | HomeView | 首页 | 直接导入（首屏） |
-| `/list` | list | ListView | 商品列表 | 懒加载 `() => import(...)` |
-| `/detail/:id` | detail | DetailView | 商品详情 | 懒加载 |
-| `/publish` | publish | PublishView | 发布商品 | 懒加载 |
-| `/messages` | messages | MessageView | 消息 | 懒加载 |
-| `/profile` | profile | ProfileView | 个人中心 | 懒加载 |
-| `/board` | board | BoardView | 数据看板 | 懒加载 |
+| 路由路径 | 路由名称 | 加载方式 | meta.title |
+|----------|----------|----------|------------|
+| `/` | home | 直接导入 | 首页 |
+| `/trade` | trade | 懒加载 | 二手交易 |
+| `/detail/:id` | detail | 懒加载 | 商品详情 |
+| `/lost-found` | lost-found | 懒加载 | 失物招领 |
+| `/group-buy` | group-buy | 懒加载 | 拼单搭子 |
+| `/errand` | errand | 懒加载 | 跑腿委托 |
+| `/publish` | publish | 懒加载 | 发布信息 |
+| `/message` | message | 懒加载 | 消息 |
+| `/user` | user | 懒加载 | 个人中心 |
 
 **设计要点：**
-- 首页使用直接导入，保证首屏加载速度
-- 其余 6 个页面使用动态 `import()` 实现路由懒加载
-- `/detail/:id` 携带动态参数 `id`，支持列表页 → 详情页的跳转
-- 每条路由配置 `meta.title`，后续可用于页面标题设置
+- 首页使用直接导入保证首屏加载速度；其余 8 条使用动态 `import()` 懒加载，Vite 构建后拆分为独立 chunk
+- 路由路径全部采用语义化命名（`/trade`、`/lost-found`、`/group-buy`、`/errand`），避免无意义路径
+- `/detail/:id` 支持动态参数，从交易列表页跳转到商品详情页传参
+- `main.ts` 中已完成 `app.use(router)` 注册
 
-### 1.3 导航系统（Task 3：构建基础导航系统）
+### 1.3 公共布局设计（Task 4 & 5）
 
-更新 `App.vue`，实现底部式顶部导航：
+在 `src/components/` 下创建了三层公共布局组件：
 
-**导航栏包含 5 个入口：**
--  首页 (`/`)
--  列表 (`/list`)
--  发布 (`/publish`)
--  消息 (`/messages`)
--  我的 (`/profile`)
+| 组件 | 文件 | 职责 |
+|------|------|------|
+| AppLayout | `AppLayout.vue` | 整体页面布局容器，max-width: 480px 居中，flex 纵向排列 |
+| AppHeader | `AppHeader.vue` | 顶部区域：显示"校园轻集市"标题 + 插槽放置导航 |
+| AppNav | `AppNav.vue` | 导航菜单：5 个入口（首页/交易/发布/消息/我的），使用 `router.push` 实现 SPA 跳转，当前页 active 高亮 |
 
-**交互特性：**
-- `router.push()` 实现 SPA 无刷新跳转
-- 当前页面按钮高亮（`active` class 绑定）
-- hover 交互反馈
-- 移动端友好（max-width: 480px 居中布局，适配手机屏幕）
+**布局架构：**
+```
+App.vue
+  └── AppLayout.vue
+        ├── AppHeader.vue
+        │     ├── 标题 "校园轻集市"
+        │     └── AppNav.vue (插槽)
+        └── <RouterView /> (页面内容区)
+```
 
-### 1.4 进阶任务完成情况
+**组件分离原则：**
+- 页面组件（views/）只关注自身业务内容
+- 公共组件（components/）负责布局、导航等通用逻辑
+- App.vue 极简化，只引入 AppLayout
+- 后续如需调整导航结构，只需修改 AppNav.vue 一个文件
 
-看板页设计： BoardView.vue 包含静态统计数据（在线商品/今日新增/注册用户/今日成交）的网格卡片布局，预留图表占位区域
+### 1.4 导航菜单设计
 
-路由跳转增强： ListView 中点击商品项 → `router.push(/detail/${id})` → DetailView 通过 `useRoute().params.id` 获取并显示 ID
+底部式顶部导航包含 5 个入口：
+- 🏠 首页 (`/`)
+- 🛒 交易 (`/trade`)
+- 📝 发布 (`/publish`)
+- 💬 消息 (`/message`)
+- 👤 我的 (`/user`)
 
-原生 HTML 导航： 项目未安装 Element Plus，使用原生 HTML + CSS 实现导航栏
-
----
-
-## 二、路由设计思路
-
-### 2.1 为什么首页使用直接导入，其余使用懒加载？
-
-- **首页**是最频繁访问的入口，直接导入避免首屏白屏
-- **其余页面**使用懒加载（`() => import(...)`），Vite 会将它们拆分为独立 chunk，用户只在需要时才下载对应 JS，减小首屏体积
-
-### 2.2 为什么选择 History 模式？
-
-- `createWebHistory` 生成干净的 URL（无 `#`），更符合现代 Web 标准
-- 需要服务端配置 fallback，开发阶段 Vite 已内置处理
-
-### 2.3 路由参数设计
-
-- `/detail/:id`：RESTful 风格，`id` 为动态参数，语义清晰
-- 列表页通过 `router.push(`/detail/${id}`)` 传递，详情页通过 `route.params.id` 接收
+导航使用 `<button>` + `router.push()` 实现（而非 `<RouterLink>`），配合 `router.currentRoute.value.path` 判断当前页高亮。其他页面（失物招领、拼单搭子、跑腿委托、商品详情）从首页分类入口或列表页进入，不在主导航中占用位置。
 
 ---
 
-## 三、遇到的问题 & 解决
+## 二、构建验证
 
-| 问题 | 原因 | 解决方式 |
-|------|------|----------|
-| `vue-tsc` 报大量 TS 错误 | `node_modules` 未安装 | `pnpm install` 安装依赖后一切正常 |
-| 类型检查通过但不确定运行时是否正常 | Vite HMR 开发环境行为差异 | `vite build` 生产构建也通过，确认代码正确 |
-| 导航高亮判断写 `===` 精确匹配 | URL 可能带 query string | 当前路由不涉及 query，先保持简单；后续可用 `startsWith` 或 `router.resolve` 优化 |
-| Element Plus 未安装 | 种子项目不包含 UI 库 | 使用原生 HTML + CSS 写导航和样式，功能完全可用 |
+- `vue-tsc --build` 类型检查：零错误通过
+- `vite build` 生产构建：成功，9 个页面路由全部拆分独立 chunk
+- 构建产物：9 个 JS chunk + 10 个 CSS 文件（含全局样式），总大小合理
 
 ---
 
-## 四、AI 协作情况
+## 三、AI 协作情况
 
 | 维度 | 详情 |
 |------|------|
 | 使用工具 | Claude Code |
-| 主要用途 | 更新路由配置、设计导航系统 |
-| 协作次数 | 4 次会话完成全部 Day2 任务 |
-| 有效输出 | 一次性创建 |
-| 需要人工修正 | 有 - 人工修正开发优化 |
-| 协作记录 | 详见 `docs/ai/AI_Collaboration_Card.md` |
+| 主要用途 | 分析现有代码结构，批量生成 8 个页面骨架、3 个布局组件、更新路由配置 |
+| 协作模式 | AI 生成代码框架，人工审查并确认每一处修改 |
+
+**AI 辅助生成的内容：**
+- 8 个页面组件的骨架代码（script + template + style）
+- 3 个布局组件的拆分设计
+- 路由配置文件的完整重写
+- App.vue 的简化重构
+
+**人工审查与修改的内容：**
+1. **页面命名对齐业务：** AI 最初生成的是泛化的 ListView/BoardView 等，人工要求改为 TradeView/LostFoundView/GroupBuyView/ErrandView 等与校园场景对应的名称
+2. **页面内容贴合校园：** 检查每个页面的示例数据是否围绕校园生活（教材、宿舍、食堂、图书馆、校区等），删除了不相关的内容
+3. **路由路径语义化：** 将 `/list` 改为 `/trade`，`/messages` 改为 `/message`，`/profile` 改为 `/user`，新增 `/lost-found`、`/group-buy`、`/errand` 路径
+4. **组件拆分合理性：** 确认 AppLayout/AppHeader/AppNav 三层分离，职责清晰不过度封装
+5. **删除冗余页面：** 移除了 BoardView（数据看板）、ListView、ProfileView 三个不匹配的旧页面
+6. **构建验证：** 手动执行 `vue-tsc` 和 `vite build` 确认零错误通过
+
+---
+
+## 四、问题与处理
+
+| 问题 | 原因 | 处理方式 |
+|------|------|----------|
+| 旧版页面名称不匹配业务 | 前一版 AI 生成时未严格对齐校园场景 | 手工重新设计页面、路径、导航结构 |
+| 首页导航入口只有 5 个，但业务有 8 个页面 | 主导航空间有限 | 失物招领/拼单搭子/跑腿委托从首页分类卡片进入，交易详情从列表点击进入 |
+| `.gitkeep` 文件需要保留 | `components/` 原来为空目录 | 创建实际组件文件后 `.gitkeep` 可保留作为历史标记 |
 
 ---
 
 ## 五、后续计划
 
 - **Day 3：** 用户认证模块（登录/注册页面、Token 管理、路由守卫）
-- **Day 4：** 商品模块完善（列表/详情对接 API、发布表单增强）
-- **Day 5：** 交易模块（购物车、下单、订单管理）
+- **Day 4：** 接口对接（商品列表、详情 API、发布表单提交）
+- **Day 5：** 交易流程完善（下单、订单管理）
 
 ---
 
-
-> Day2 结束。
+> Day2 结束。本日完成了 8 个核心业务页面的页面骨架搭建、9 条路由的导航配置、三层公共布局组件的设计，以及完整的构建验证。项目已形成清晰的页面结构和路由组织，为后续开发奠定了稳定的基础。
