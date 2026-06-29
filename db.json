@@ -1,0 +1,303 @@
+{
+  "trades": [
+    {
+      "id": 1,
+      "title": "高等数学（第七版）同济大学",
+      "price": 15,
+      "category": "教材",
+      "condition": "八成新",
+      "publisher": "数院小王",
+      "publishTime": "2026-06-28 10:30",
+      "location": "图书馆门口",
+      "image": "https://placehold.co/300x200?text=Math+Book",
+      "status": "open"
+    },
+    {
+      "id": 2,
+      "title": "Cherry MX 机械键盘 青轴",
+      "price": 120,
+      "category": "数码",
+      "condition": "九成新",
+      "publisher": "计科小李",
+      "publishTime": "2026-06-27 15:00",
+      "location": "7号宿舍楼",
+      "image": "https://placehold.co/300x200?text=Keyboard",
+      "status": "open"
+    },
+    {
+      "id": 3,
+      "title": "宿舍用小熊加湿器",
+      "price": 30,
+      "category": "生活",
+      "condition": "七成新",
+      "publisher": "文学院小陈",
+      "publishTime": "2026-06-26 20:00",
+      "location": "3号宿舍楼",
+      "image": "https://placehold.co/300x200?text=Humidifier",
+      "status": "open"
+    },
+    {
+      "id": 4,
+      "title": "二手自行车 26寸 带锁",
+      "price": 200,
+      "category": "出行",
+      "condition": "六成新",
+      "publisher": "体院大刘",
+      "publishTime": "2026-06-25 09:00",
+      "location": "体育馆门口",
+      "image": "https://placehold.co/300x200?text=Bike",
+      "status": "closed"
+    },
+    {
+      "id": 5,
+      "title": "考研英语历年真题（2020-2026）",
+      "price": 25,
+      "category": "教材",
+      "condition": "九成新",
+      "publisher": "外院小赵",
+      "publishTime": "2026-06-28 08:00",
+      "location": "教学楼B区",
+      "image": "https://placehold.co/300x200?text=English+Book",
+      "status": "open"
+    },
+    {
+      "id": 6,
+      "title": "台灯 LED 护眼学习灯",
+      "price": 45,
+      "category": "生活",
+      "condition": "八成新",
+      "publisher": "化院小周",
+      "publishTime": "2026-06-24 18:30",
+      "location": "5号宿舍楼",
+      "image": "https://placehold.co/300x200?text=Lamp",
+      "status": "open"
+    },
+    {
+      "id": 7,
+      "title": "iPad Air 保护壳 + 钢化膜",
+      "price": 20,
+      "category": "数码",
+      "condition": "全新",
+      "publisher": "美院小吴",
+      "publishTime": "2026-06-23 12:00",
+      "location": "一食堂门口",
+      "image": "https://placehold.co/300x200?text=iPad+Case",
+      "status": "done"
+    }
+  ],
+  "lostFounds": [
+    {
+      "id": 1,
+      "title": "蓝色保温杯",
+      "type": "lost",
+      "itemName": "Thermos保温杯 500ml",
+      "location": "图书馆二楼自习区",
+      "time": "2026-06-28 14:00",
+      "contact": "张三 188xxxx1234",
+      "description": "蓝色瓶身，白色杯盖，放在靠窗第二个桌子上",
+      "status": "open"
+    },
+    {
+      "id": 2,
+      "title": "校园卡 — 李四",
+      "type": "found",
+      "itemName": "校园一卡通",
+      "location": "一食堂门口",
+      "time": "2026-06-27 12:30",
+      "contact": "好心人 136xxxx5678",
+      "description": "在一食堂门口捡到，卡号后四位为8823",
+      "status": "open"
+    },
+    {
+      "id": 3,
+      "title": "黑色双肩包",
+      "type": "found",
+      "itemName": "瑞士军刀品牌双肩包",
+      "location": "教学楼A201教室",
+      "time": "2026-06-27 17:00",
+      "contact": "王五 139xxxx9012",
+      "description": "黑色双肩包，内有课本和文具",
+      "status": "open"
+    },
+    {
+      "id": 4,
+      "title": "钥匙串（3把钥匙）",
+      "type": "found",
+      "itemName": "钥匙串带小熊挂件",
+      "location": "操场跑道旁长椅",
+      "time": "2026-06-26 08:00",
+      "contact": "赵六 177xxxx3456",
+      "description": "三把钥匙加一个小熊挂件",
+      "status": "done"
+    },
+    {
+      "id": 5,
+      "title": "白色无线耳机盒",
+      "type": "lost",
+      "itemName": "AirPods Pro 充电盒",
+      "location": "二食堂二楼",
+      "time": "2026-06-25 12:00",
+      "contact": "孙七 155xxxx7890",
+      "description": "白色充电盒，刻有名字缩写 SQ",
+      "status": "open"
+    },
+    {
+      "id": 6,
+      "title": "雨伞 — 蓝色格纹",
+      "type": "lost",
+      "itemName": "蓝色格纹折叠伞",
+      "location": "图书馆入口伞架",
+      "time": "2026-06-24 16:00",
+      "contact": "钱八 166xxxx2345",
+      "description": "蓝色格纹折叠伞，伞柄有一个小划痕",
+      "status": "open"
+    }
+  ],
+  "groupBuys": [
+    {
+      "id": 1,
+      "title": "外卖拼单 — 奶茶满减凑单",
+      "type": "拼单",
+      "targetCount": 4,
+      "currentCount": 2,
+      "deadline": "2026-06-28 18:00",
+      "location": "7号宿舍楼下",
+      "publisher": "奶茶爱好者",
+      "status": "open"
+    },
+    {
+      "id": 2,
+      "title": "期末高数自习搭子",
+      "type": "搭子",
+      "targetCount": 5,
+      "currentCount": 3,
+      "deadline": "2026-07-05",
+      "location": "图书馆三楼",
+      "publisher": "数院小刘",
+      "status": "open"
+    },
+    {
+      "id": 3,
+      "title": "篮球4v4组队 — 周六下午场",
+      "type": "组队",
+      "targetCount": 8,
+      "currentCount": 5,
+      "deadline": "2026-06-29 15:00",
+      "location": "西区篮球场",
+      "publisher": "体院阿杰",
+      "status": "open"
+    },
+    {
+      "id": 4,
+      "title": "拼车去火车站 — 周日早班车",
+      "type": "拼单",
+      "targetCount": 4,
+      "currentCount": 2,
+      "deadline": "2026-06-30 08:00",
+      "location": "校门口集合",
+      "publisher": "回家小分队",
+      "status": "open"
+    },
+    {
+      "id": 5,
+      "title": "王者荣耀五排车队",
+      "type": "组队",
+      "targetCount": 5,
+      "currentCount": 3,
+      "deadline": "2026-06-28 20:00",
+      "location": "线上开黑",
+      "publisher": "电竞社老王",
+      "status": "closed"
+    },
+    {
+      "id": 6,
+      "title": "健身房打卡搭子",
+      "type": "搭子",
+      "targetCount": 3,
+      "currentCount": 2,
+      "deadline": "长期有效",
+      "location": "学校体育馆健身房",
+      "publisher": "健身达人小马",
+      "status": "open"
+    },
+    {
+      "id": 7,
+      "title": "食堂麻辣烫拼单",
+      "type": "拼单",
+      "targetCount": 3,
+      "currentCount": 3,
+      "deadline": "2026-06-27 11:30",
+      "location": "三食堂二楼",
+      "publisher": "吃货联盟",
+      "status": "done"
+    }
+  ],
+  "errands": [
+    {
+      "id": 1,
+      "title": "代取快递 — 中通3件",
+      "taskType": "委托",
+      "reward": 5,
+      "pickupLocation": "菜鸟驿站",
+      "deliveryLocation": "7号宿舍楼",
+      "deadline": "2026-06-28 19:00",
+      "publisher": "宅在宿舍的小明",
+      "status": "open"
+    },
+    {
+      "id": 2,
+      "title": "代买早餐 — 一食堂肉包+豆浆",
+      "taskType": "跑腿",
+      "reward": 3,
+      "pickupLocation": "一食堂",
+      "deliveryLocation": "教学楼A区3楼",
+      "deadline": "每天 7:30",
+      "publisher": "早八人小周",
+      "status": "open"
+    },
+    {
+      "id": 3,
+      "title": "帮忙搬宿舍行李",
+      "taskType": "委托",
+      "reward": 20,
+      "pickupLocation": "3号宿舍楼",
+      "deliveryLocation": "9号宿舍楼",
+      "deadline": "2026-06-29 全天",
+      "publisher": "换寝的小李",
+      "status": "open"
+    },
+    {
+      "id": 4,
+      "title": "图书馆占座 — 考研区靠窗位",
+      "taskType": "跑腿",
+      "reward": 2,
+      "pickupLocation": "图书馆三楼考研区",
+      "deliveryLocation": "图书馆三楼考研区",
+      "deadline": "工作日 6:30",
+      "publisher": "考研人小陈",
+      "status": "closed"
+    },
+    {
+      "id": 5,
+      "title": "代打印文件 — 毕业论文初稿",
+      "taskType": "委托",
+      "reward": 8,
+      "pickupLocation": "文印店",
+      "deliveryLocation": "文学院办公室",
+      "deadline": "2026-06-28 16:00",
+      "publisher": "大四学姐",
+      "status": "open"
+    },
+    {
+      "id": 6,
+      "title": "代还图书馆借书",
+      "taskType": "跑腿",
+      "reward": 4,
+      "pickupLocation": "8号宿舍楼",
+      "deliveryLocation": "图书馆还书处",
+      "deadline": "2026-06-29 17:00",
+      "publisher": "忘记还书的小赵",
+      "status": "open"
+    }
+  ]
+}

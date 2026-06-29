@@ -1,11 +1,38 @@
 <script setup lang="ts">
-// 失物招领页 — 展示失物和招领信息
-const lostItems = [
-  { id: 1, title: '蓝色保温杯', location: '图书馆二楼', time: '2026-06-27', type: '失物' },
-  { id: 2, title: '校园卡（张三）', location: '一食堂门口', time: '2026-06-26', type: '失物' },
-  { id: 3, title: '黑色双肩包', location: '教学楼A201', time: '2026-06-25', type: '招领' },
-  { id: 4, title: '钥匙串（3把钥匙）', location: '操场跑道旁', time: '2026-06-24', type: '招领' },
-]
+// 失物招领页 — 从 API 获取失物招领列表并展示
+import { ref, computed, onMounted } from 'vue'
+import { getLostFounds, type LostFound } from '@/api/lostFound'
+import ItemCard from '@/components/ItemCard.vue'
+import EmptyState from '@/components/EmptyState.vue'
+
+// 失物招领列表（响应式）
+const lostItems = ref<LostFound[]>([])
+// 当前筛选类型
+const activeTab = ref('全部')
+
+const tabs = ['全部', '失物', '招领']
+
+// 按类型过滤
+const filteredList = computed(() => {
+  if (activeTab.value === '全部') return lostItems.value
+  const typeKey = activeTab.value === '失物' ? 'lost' : 'found'
+  return lostItems.value.filter((item) => item.type === typeKey)
+})
+
+// 页面挂载时请求数据
+onMounted(async () => {
+  try {
+    lostItems.value = await getLostFounds()
+  } catch (err) {
+    console.error('获取失物招领数据失败:', err)
+  }
+})
+
+// 类型标签映射
+const typeTagMap: Record<string, { text: string; tagType: 'danger' | 'success' }> = {
+  lost: { text: '失物', tagType: 'danger' },
+  found: { text: '招领', tagType: 'success' },
+}
 </script>
 
 <template>
@@ -15,28 +42,35 @@ const lostItems = [
 
     <!-- 类型切换 -->
     <div class="tab-bar">
-      <button class="tab-btn active">全部</button>
-      <button class="tab-btn">失物</button>
-      <button class="tab-btn">招领</button>
+      <button
+        v-for="tab in tabs"
+        :key="tab"
+        class="tab-btn"
+        :class="{ active: activeTab === tab }"
+        @click="activeTab = tab"
+      >
+        {{ tab }}
+      </button>
     </div>
 
     <!-- 信息列表 -->
-    <ul class="item-list">
-      <li v-for="item in lostItems" :key="item.id" class="item-card">
-        <div class="item-header">
-          <span class="item-tag" :class="item.type === '失物' ? 'tag-lost' : 'tag-found'">
-            {{ item.type }}
-          </span>
-          <span class="item-title">{{ item.title }}</span>
-        </div>
-        <div class="item-meta">
-          <span>📍 {{ item.location }}</span>
-          <span>🕐 {{ item.time }}</span>
-        </div>
-      </li>
-    </ul>
+    <div v-if="filteredList.length > 0" class="item-list">
+      <ItemCard
+        v-for="item in filteredList"
+        :key="item.id"
+        :title="item.title"
+        :tag="typeTagMap[item.type]?.text || item.type"
+        :tag-type="typeTagMap[item.type]?.tagType || 'primary'"
+        :meta="[`📍 ${item.location}`, `🕐 ${item.time}`, `📞 ${item.contact}`]"
+      />
+    </div>
 
-    <p v-if="lostItems.length === 0" class="empty-tip">暂无失物招领信息</p>
+    <!-- 空状态 -->
+    <EmptyState
+      v-else
+      message="暂无失物招领信息"
+      icon="🔍"
+    />
   </section>
 </template>
 
@@ -85,57 +119,5 @@ const lostItems = [
 .item-list {
   list-style: none;
   padding: 0;
-}
-
-.item-card {
-  padding: 14px 16px;
-  border-bottom: 1px solid #eee;
-  cursor: pointer;
-}
-
-.item-card:hover {
-  background: #f5f7fa;
-}
-
-.item-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
-}
-
-.item-tag {
-  font-size: 12px;
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-weight: 500;
-}
-
-.tag-lost {
-  background: #fef0f0;
-  color: #e74c3c;
-}
-
-.tag-found {
-  background: #f0f9eb;
-  color: #67c23a;
-}
-
-.item-title {
-  font-size: 15px;
-  font-weight: 500;
-}
-
-.item-meta {
-  display: flex;
-  gap: 16px;
-  font-size: 12px;
-  color: #999;
-}
-
-.empty-tip {
-  text-align: center;
-  color: #999;
-  margin-top: 40px;
 }
 </style>

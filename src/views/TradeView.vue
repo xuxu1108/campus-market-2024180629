@@ -1,20 +1,45 @@
 <script setup lang="ts">
-// 二手交易页 — 展示二手商品列表
+// 二手交易页 — 从 API 获取商品列表并展示
+import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { getTrades, type Trade } from '@/api/trade'
+import ItemCard from '@/components/ItemCard.vue'
+import EmptyState from '@/components/EmptyState.vue'
 
 const router = useRouter()
+
+// 商品列表（响应式）
+const goodsList = ref<Trade[]>([])
+// 当前筛选分类
+const activeFilter = ref('全部')
+
+const categories = ['全部', '教材', '数码', '生活', '出行']
+
+// 按分类过滤
+const filteredList = computed(() => {
+  if (activeFilter.value === '全部') return goodsList.value
+  return goodsList.value.filter((item) => item.category === activeFilter.value)
+})
+
+// 页面挂载时请求数据
+onMounted(async () => {
+  try {
+    goodsList.value = await getTrades()
+  } catch (err) {
+    console.error('获取二手交易数据失败:', err)
+  }
+})
 
 const goDetail = (id: number) => {
   router.push(`/detail/${id}`)
 }
 
-// 静态示例数据
-const goodsList = [
-  { id: 1, title: '高等数学（第七版）', price: 15, category: '教材' },
-  { id: 2, title: '机械键盘 Cherry MX', price: 120, category: '数码' },
-  { id: 3, title: '宿舍用加湿器', price: 30, category: '生活' },
-  { id: 4, title: '二手自行车 26寸', price: 200, category: '出行' },
-]
+// 状态标签映射
+const statusTagMap: Record<string, { text: string; type: 'success' | 'warning' | 'primary' }> = {
+  open: { text: '在售', type: 'success' },
+  closed: { text: '已售', type: 'warning' },
+  done: { text: '完成', type: 'primary' },
+}
 </script>
 
 <template>
@@ -24,30 +49,38 @@ const goodsList = [
 
     <!-- 分类筛选 -->
     <div class="filters">
-      <button class="filter-btn active">全部</button>
-      <button class="filter-btn">教材</button>
-      <button class="filter-btn">数码</button>
-      <button class="filter-btn">生活</button>
-      <button class="filter-btn">出行</button>
+      <button
+        v-for="cat in categories"
+        :key="cat"
+        class="filter-btn"
+        :class="{ active: activeFilter === cat }"
+        @click="activeFilter = cat"
+      >
+        {{ cat }}
+      </button>
     </div>
 
     <!-- 商品列表 -->
-    <ul class="goods-list">
-      <li
-        v-for="item in goodsList"
+    <div v-if="filteredList.length > 0" class="goods-list">
+      <ItemCard
+        v-for="item in filteredList"
         :key="item.id"
-        class="goods-item"
+        :title="item.title"
+        :tag="statusTagMap[item.status]?.text || item.status"
+        :tag-type="statusTagMap[item.status]?.type || 'primary'"
+        :price="`¥${item.price}`"
+        :meta="[`📍 ${item.location}`, `🕐 ${item.publishTime}`, `${item.condition}`]"
+        :clickable="true"
         @click="goDetail(item.id)"
-      >
-        <div class="goods-info">
-          <span class="goods-title">{{ item.title }}</span>
-          <span class="goods-category">{{ item.category }}</span>
-        </div>
-        <span class="goods-price">¥{{ item.price }}</span>
-      </li>
-    </ul>
+      />
+    </div>
 
-    <p v-if="goodsList.length === 0" class="empty-tip">暂无商品</p>
+    <!-- 空状态 -->
+    <EmptyState
+      v-else
+      message="暂无商品信息"
+      icon="🛒"
+    />
   </section>
 </template>
 
@@ -97,40 +130,5 @@ const goodsList = [
 .goods-list {
   list-style: none;
   padding: 0;
-}
-
-.goods-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 16px;
-  border-bottom: 1px solid #eee;
-  cursor: pointer;
-}
-
-.goods-item:hover {
-  background: #f5f7fa;
-}
-
-.goods-title {
-  font-size: 15px;
-  font-weight: 500;
-}
-
-.goods-category {
-  font-size: 12px;
-  color: #999;
-  margin-left: 8px;
-}
-
-.goods-price {
-  color: #e74c3c;
-  font-weight: 600;
-}
-
-.empty-tip {
-  text-align: center;
-  color: #999;
-  margin-top: 40px;
 }
 </style>
