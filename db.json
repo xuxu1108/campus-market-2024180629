@@ -90,6 +90,19 @@
       "image": "https://placehold.co/300x200?text=iPad+Case",
       "status": "done",
       "description": "iPad Air 保护壳+钢化膜套装，全新未拆封"
+    },
+    {
+      "title": "清风抽纸10包",
+      "category": "生活用品",
+      "price": 10,
+      "condition": "全新",
+      "location": "东苑",
+      "publisher": "当前用户",
+      "publishTime": "2026-06-30 06:49",
+      "image": "",
+      "status": "open",
+      "description": "10元10包全新抽纸，每包100抽，东苑自提",
+      "id": 8
     }
   ],
   "lostFounds": [
