@@ -10,7 +10,8 @@
       "publishTime": "2026-06-28 10:30",
       "location": "图书馆门口",
       "image": "https://placehold.co/300x200?text=Math+Book",
-      "status": "open"
+      "status": "open",
+      "description": "高等数学第七版，同济大学出版社，适合考研复习使用"
     },
     {
       "id": 2,
@@ -22,7 +23,8 @@
       "publishTime": "2026-06-27 15:00",
       "location": "7号宿舍楼",
       "image": "https://placehold.co/300x200?text=Keyboard",
-      "status": "open"
+      "status": "open",
+      "description": "Cherry MX 青轴机械键盘，手感清脆，适合编程和游戏"
     },
     {
       "id": 3,
@@ -34,7 +36,8 @@
       "publishTime": "2026-06-26 20:00",
       "location": "3号宿舍楼",
       "image": "https://placehold.co/300x200?text=Humidifier",
-      "status": "open"
+      "status": "open",
+      "description": "小熊加湿器，宿舍使用半年，功能正常，出雾细腻"
     },
     {
       "id": 4,
@@ -46,7 +49,8 @@
       "publishTime": "2026-06-25 09:00",
       "location": "体育馆门口",
       "image": "https://placehold.co/300x200?text=Bike",
-      "status": "closed"
+      "status": "closed",
+      "description": "二手自行车26寸，带锁，适合校园通勤，轮胎已换新"
     },
     {
       "id": 5,
@@ -58,7 +62,8 @@
       "publishTime": "2026-06-28 08:00",
       "location": "教学楼B区",
       "image": "https://placehold.co/300x200?text=English+Book",
-      "status": "open"
+      "status": "open",
+      "description": "考研英语历年真题2020-2026，带答案解析，仅少量笔记"
     },
     {
       "id": 6,
@@ -70,7 +75,8 @@
       "publishTime": "2026-06-24 18:30",
       "location": "5号宿舍楼",
       "image": "https://placehold.co/300x200?text=Lamp",
-      "status": "open"
+      "status": "open",
+      "description": "LED护眼台灯，三档调光，学习办公两用，无频闪"
     },
     {
       "id": 7,
@@ -82,7 +88,8 @@
       "publishTime": "2026-06-23 12:00",
       "location": "一食堂门口",
       "image": "https://placehold.co/300x200?text=iPad+Case",
-      "status": "done"
+      "status": "done",
+      "description": "iPad Air 保护壳+钢化膜套装，全新未拆封"
     }
   ],
   "lostFounds": [
@@ -163,7 +170,8 @@
       "deadline": "2026-06-28 18:00",
       "location": "7号宿舍楼下",
       "publisher": "奶茶爱好者",
-      "status": "open"
+      "status": "open",
+      "description": "外卖奶茶拼单，满减优惠一起凑，每人省运费"
     },
     {
       "id": 2,
@@ -174,7 +182,8 @@
       "deadline": "2026-07-05",
       "location": "图书馆三楼",
       "publisher": "数院小刘",
-      "status": "open"
+      "status": "open",
+      "description": "期末高数自习搭子，互相监督互相答疑，共同进步"
     },
     {
       "id": 3,
@@ -185,7 +194,8 @@
       "deadline": "2026-06-29 15:00",
       "location": "西区篮球场",
       "publisher": "体院阿杰",
-      "status": "open"
+      "status": "open",
+      "description": "篮球4v4组队，周六下午场，目前缺3人，有裁判"
     },
     {
       "id": 4,
@@ -196,7 +206,8 @@
       "deadline": "2026-06-30 08:00",
       "location": "校门口集合",
       "publisher": "回家小分队",
-      "status": "open"
+      "status": "open",
+      "description": "拼车去火车站，周日早班车，分担油费和停车费"
     },
     {
       "id": 5,
@@ -207,7 +218,8 @@
       "deadline": "2026-06-28 20:00",
       "location": "线上开黑",
       "publisher": "电竞社老王",
-      "status": "closed"
+      "status": "closed",
+      "description": "王者荣耀五排车队，缺辅助和打野位，有语音"
     },
     {
       "id": 6,
@@ -218,7 +230,8 @@
       "deadline": "长期有效",
       "location": "学校体育馆健身房",
       "publisher": "健身达人小马",
-      "status": "open"
+      "status": "open",
+      "description": "健身房打卡搭子，互相监督坚持锻炼，每周三次"
     },
     {
       "id": 7,
@@ -229,7 +242,8 @@
       "deadline": "2026-06-27 11:30",
       "location": "三食堂二楼",
       "publisher": "吃货联盟",
-      "status": "done"
+      "status": "done",
+      "description": "食堂麻辣烫拼单，人多更实惠，一起分享美食"
     }
   ],
   "errands": [
@@ -242,7 +256,8 @@
       "deliveryLocation": "7号宿舍楼",
       "deadline": "2026-06-28 19:00",
       "publisher": "宅在宿舍的小明",
-      "status": "open"
+      "status": "open",
+      "description": "代取中通快递3件，在菜鸟驿站，送到7号宿舍楼下"
     },
     {
       "id": 2,
@@ -253,7 +268,8 @@
       "deliveryLocation": "教学楼A区3楼",
       "deadline": "每天 7:30",
       "publisher": "早八人小周",
-      "status": "open"
+      "status": "open",
+      "description": "帮忙在一食堂买早餐，2个肉包+1杯豆浆，送到教学楼"
     },
     {
       "id": 3,
@@ -264,7 +280,8 @@
       "deliveryLocation": "9号宿舍楼",
       "deadline": "2026-06-29 全天",
       "publisher": "换寝的小李",
-      "status": "open"
+      "status": "open",
+      "description": "帮忙搬宿舍行李，3个大箱子和一些杂物，需要体力"
     },
     {
       "id": 4,
@@ -275,7 +292,8 @@
       "deliveryLocation": "图书馆三楼考研区",
       "deadline": "工作日 6:30",
       "publisher": "考研人小陈",
-      "status": "closed"
+      "status": "closed",
+      "description": "图书馆占座，考研区靠窗位置，工作日早上6:30"
     },
     {
       "id": 5,
@@ -286,7 +304,8 @@
       "deliveryLocation": "文学院办公室",
       "deadline": "2026-06-28 16:00",
       "publisher": "大四学姐",
-      "status": "open"
+      "status": "open",
+      "description": "代打印毕业论文初稿，需要排版装订，送到文学院办公室"
     },
     {
       "id": 6,
@@ -297,7 +316,8 @@
       "deliveryLocation": "图书馆还书处",
       "deadline": "2026-06-29 17:00",
       "publisher": "忘记还书的小赵",
-      "status": "open"
+      "status": "open",
+      "description": "代还图书馆借书3本，在还书处归还即可，书已整理好"
     }
   ]
 }

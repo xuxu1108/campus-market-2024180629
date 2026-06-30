@@ -11,9 +11,15 @@ export interface GroupBuy {
   location: string
   publisher: string
   status: string
+  description?: string
 }
 
 // 获取所有拼单搭子列表
 export function getGroupBuys(): Promise<GroupBuy[]> {
   return http.get('/groupBuys').then((res) => res.data)
+}
+
+// 新增拼单搭子
+export function createGroupBuy(data: Omit<GroupBuy, 'id'>): Promise<GroupBuy> {
+  return http.post('/groupBuys', data).then((res) => res.data)
 }
