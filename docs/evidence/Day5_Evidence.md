@@ -93,7 +93,8 @@
 - 确认 AppLayout.vue 中 AppNav 通过 slot 传入 AppHeader 的方式与新 header 结构兼容
 - 保持 EmptyState 组件的 `message` prop 命名不变（教学文档中使用 `text`，项目中实际使用 `message`）
 - 四个列表页面的收藏按钮样式统一添加 hover 效果
-
+- 检测Day5任务卡功能是否正常，确保Day4前置环境准备
+ 
 ## 7. 测试记录
 
 **测试环境：** 本地开发环境（Vite dev server + JSON Server mock）
