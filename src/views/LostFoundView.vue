@@ -4,6 +4,9 @@ import { ref, computed, onMounted } from 'vue'
 import { getLostFounds, type LostFound } from '@/api/lostFound'
 import ItemCard from '@/components/ItemCard.vue'
 import EmptyState from '@/components/EmptyState.vue'
+import { useFavoriteStore } from '@/stores/favorite'
+
+const favoriteStore = useFavoriteStore()
 
 // 失物招领列表（响应式）
 const lostItems = ref<LostFound[]>([])
@@ -62,7 +65,22 @@ const typeTagMap: Record<string, { text: string; tagType: 'danger' | 'success' }
         :tag="typeTagMap[item.type]?.text || item.type"
         :tag-type="typeTagMap[item.type]?.tagType || 'primary'"
         :meta="[`📍 ${item.location}`, `🕐 ${item.time}`, `📞 ${item.contact}`]"
-      />
+      >
+        <template #footer>
+          <button
+            class="favorite-btn"
+            @click="favoriteStore.toggleFavorite({
+              id: item.id,
+              type: 'lostFound',
+              title: item.title,
+              description: item.description || '',
+              location: item.location
+            })"
+          >
+            {{ favoriteStore.isFavorite('lostFound', item.id) ? '已收藏' : '收藏' }}
+          </button>
+        </template>
+      </ItemCard>
     </div>
 
     <!-- 空状态 -->
@@ -119,5 +137,20 @@ const typeTagMap: Record<string, { text: string; tagType: 'danger' | 'success' }
 .item-list {
   list-style: none;
   padding: 0;
+}
+
+.favorite-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 6px 12px;
+  cursor: pointer;
+  background: #f3f4f6;
+  color: #374151;
+  font-size: 13px;
+}
+
+.favorite-btn:hover {
+  background: #fee2e2;
+  color: #e74c3c;
 }
 </style>

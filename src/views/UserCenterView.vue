@@ -1,136 +1,133 @@
-<script setup lang="ts">
-// 个人中心 — 展示用户资料、我的发布、收藏等内容
-</script>
-
 <template>
-  <section class="user-center">
-    <h2 class="section-title">👤 个人中心</h2>
-    <p class="section-desc">管理你的个人信息和发布内容</p>
+  <section class="page">
+    <div class="profile-card">
+      <div class="avatar">
+        {{ userStore.displayName.slice(0, 1) }}
+      </div>
 
-    <!-- 用户信息卡片 -->
-    <div class="user-card">
-      <div class="avatar">[头像]</div>
-      <div class="user-info">
-        <p class="username">未登录</p>
-        <p class="user-desc">登录后可查看个人信息</p>
+      <div>
+        <h1>{{ userStore.displayName }}</h1>
+        <p>{{ userStore.userDescription }}</p>
+        <p>{{ userStore.currentUser.bio }}</p>
       </div>
     </div>
 
-    <!-- 功能菜单 -->
-    <div class="menu-list">
-      <div class="menu-item">
-        <span class="menu-icon">📦</span>
-        <span class="menu-label">我的发布</span>
-        <span class="menu-arrow">›</span>
+    <div class="panel">
+      <h2>我的收藏</h2>
+
+      <EmptyState
+        v-if="favoriteStore.favorites.length === 0"
+        message="暂无收藏内容"
+      />
+
+      <div v-else class="favorite-list">
+        <ItemCard
+          v-for="item in favoriteStore.favorites"
+          :key="`${item.type}-${item.id}`"
+          :title="item.title"
+          :description="item.description"
+          :tag="getTypeLabel(item.type)"
+          :location="item.location"
+        >
+          <template #footer>
+            <button class="remove-btn" @click="favoriteStore.removeFavorite(item.type, item.id)">
+              取消收藏
+            </button>
+          </template>
+        </ItemCard>
       </div>
-      <div class="menu-item">
-        <span class="menu-icon">❤️</span>
-        <span class="menu-label">我的收藏</span>
-        <span class="menu-arrow">›</span>
-      </div>
-      <div class="menu-item">
-        <span class="menu-icon">📋</span>
-        <span class="menu-label">我的订单</span>
-        <span class="menu-arrow">›</span>
-      </div>
-      <div class="menu-item">
-        <span class="menu-icon">🔍</span>
-        <span class="menu-label">浏览记录</span>
-        <span class="menu-arrow">›</span>
-      </div>
-      <div class="menu-item">
-        <span class="menu-icon">⚙️</span>
-        <span class="menu-label">设置</span>
-        <span class="menu-arrow">›</span>
-      </div>
+    </div>
+
+    <div class="panel">
+      <h2>我的发布</h2>
+      <p class="hint">
+        本模块用于展示当前用户发布过的信息。Day5 阶段可先完成结构展示，后续可继续与接口数据联动。
+      </p>
     </div>
   </section>
 </template>
 
+<script setup lang="ts">
+import EmptyState from '../components/EmptyState.vue'
+import ItemCard from '../components/ItemCard.vue'
+import { useFavoriteStore } from '../stores/favorite'
+import { useUserStore } from '../stores/user'
+
+const userStore = useUserStore()
+const favoriteStore = useFavoriteStore()
+
+function getTypeLabel(type: string) {
+  const map: Record<string, string> = {
+    trade: '二手交易',
+    lostFound: '失物招领',
+    groupBuy: '拼单搭子',
+    errand: '跑腿委托',
+  }
+
+  return map[type] || '校园信息'
+}
+</script>
+
 <style scoped>
-.user-center {
-  padding: 16px;
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.section-title {
-  font-size: 20px;
-  margin-bottom: 4px;
+.profile-card,
+.panel {
+  padding: 24px;
+  border-radius: 16px;
+  background: #fff;
 }
 
-.section-desc {
-  color: #666;
-  font-size: 14px;
-  margin-bottom: 16px;
-}
-
-.user-card {
+.profile-card {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 16px;
-  background: #f5f7fa;
-  border-radius: 12px;
-  margin-bottom: 20px;
+  gap: 20px;
 }
 
 .avatar {
   width: 64px;
   height: 64px;
-  background: #ddd;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #999;
-  font-size: 12px;
+  display: grid;
+  place-items: center;
+  background: #eff6ff;
+  color: #2563eb;
+  font-size: 28px;
+  font-weight: 700;
 }
 
-.username {
-  font-size: 18px;
-  font-weight: 600;
+.profile-card h1,
+.panel h2 {
+  margin: 0 0 8px;
 }
 
-.user-desc {
-  font-size: 13px;
-  color: #999;
-  margin-top: 4px;
+.profile-card p,
+.hint {
+  margin: 0;
+  color: #6b7280;
+  line-height: 1.6;
 }
 
-.menu-list {
-  border-radius: 12px;
-  overflow: hidden;
+.favorite-list {
+  display: grid;
+  gap: 16px;
 }
 
-.menu-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 16px;
-  border-bottom: 1px solid #eee;
+.remove-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 6px 12px;
   cursor: pointer;
-  font-size: 15px;
-  transition: background 0.2s;
+  background: #f3f4f6;
+  color: #374151;
 }
 
-.menu-item:last-child {
-  border-bottom: none;
-}
-
-.menu-item:hover {
-  background: #f5f7fa;
-}
-
-.menu-icon {
-  font-size: 20px;
-}
-
-.menu-label {
-  flex: 1;
-  font-weight: 500;
-}
-
-.menu-arrow {
-  color: #ccc;
-  font-size: 20px;
+.remove-btn:hover {
+  background: #fee2e2;
+  color: #e74c3c;
 }
 </style>

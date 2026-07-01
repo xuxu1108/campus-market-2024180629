@@ -4,6 +4,9 @@ import { ref, computed, onMounted } from 'vue'
 import { getErrands, type Errand } from '@/api/errand'
 import ItemCard from '@/components/ItemCard.vue'
 import EmptyState from '@/components/EmptyState.vue'
+import { useFavoriteStore } from '@/stores/favorite'
+
+const favoriteStore = useFavoriteStore()
 
 // 跑腿任务列表（响应式）
 const errandList = ref<Errand[]>([])
@@ -62,7 +65,22 @@ const taskTypeTagMap: Record<string, { text: string; tagType: 'danger' | 'succes
         :tag-type="taskTypeTagMap[item.taskType]?.tagType || 'primary'"
         :price="`¥${item.reward}`"
         :meta="[`📍 ${item.pickupLocation} → ${item.deliveryLocation}`, `⏰ ${item.deadline}`, `👤 ${item.publisher}`]"
-      />
+      >
+        <template #footer>
+          <button
+            class="favorite-btn"
+            @click="favoriteStore.toggleFavorite({
+              id: item.id,
+              type: 'errand',
+              title: item.title,
+              description: item.description || '',
+              location: item.pickupLocation
+            })"
+          >
+            {{ favoriteStore.isFavorite('errand', item.id) ? '已收藏' : '收藏' }}
+          </button>
+        </template>
+      </ItemCard>
     </div>
 
     <!-- 空状态 -->
@@ -119,5 +137,20 @@ const taskTypeTagMap: Record<string, { text: string; tagType: 'danger' | 'succes
 .errand-list {
   list-style: none;
   padding: 0;
+}
+
+.favorite-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 6px 12px;
+  cursor: pointer;
+  background: #f3f4f6;
+  color: #374151;
+  font-size: 13px;
+}
+
+.favorite-btn:hover {
+  background: #fee2e2;
+  color: #e74c3c;
 }
 </style>

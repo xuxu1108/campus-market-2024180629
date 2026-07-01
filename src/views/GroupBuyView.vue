@@ -4,6 +4,9 @@ import { ref, computed, onMounted } from 'vue'
 import { getGroupBuys, type GroupBuy } from '@/api/groupBuy'
 import ItemCard from '@/components/ItemCard.vue'
 import EmptyState from '@/components/EmptyState.vue'
+import { useFavoriteStore } from '@/stores/favorite'
+
+const favoriteStore = useFavoriteStore()
 
 // 拼单列表（响应式）
 const groupList = ref<GroupBuy[]>([])
@@ -63,7 +66,22 @@ const statusTagMap: Record<string, { text: string; type: 'success' | 'warning' |
         :tag-type="'primary'"
         :price="`${item.currentCount}/${item.targetCount}人`"
         :meta="[`📍 ${item.location}`, `⏰ ${item.deadline}`, `👤 ${item.publisher}`]"
-      />
+      >
+        <template #footer>
+          <button
+            class="favorite-btn"
+            @click="favoriteStore.toggleFavorite({
+              id: item.id,
+              type: 'groupBuy',
+              title: item.title,
+              description: item.description || '',
+              location: item.location
+            })"
+          >
+            {{ favoriteStore.isFavorite('groupBuy', item.id) ? '已收藏' : '收藏' }}
+          </button>
+        </template>
+      </ItemCard>
     </div>
 
     <!-- 空状态 -->
@@ -120,5 +138,20 @@ const statusTagMap: Record<string, { text: string; type: 'success' | 'warning' |
 .group-list {
   list-style: none;
   padding: 0;
+}
+
+.favorite-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 6px 12px;
+  cursor: pointer;
+  background: #f3f4f6;
+  color: #374151;
+  font-size: 13px;
+}
+
+.favorite-btn:hover {
+  background: #fee2e2;
+  color: #e74c3c;
 }
 </style>

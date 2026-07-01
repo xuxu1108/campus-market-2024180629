@@ -9,6 +9,10 @@ defineProps<{
   tagType?: 'primary' | 'danger' | 'success' | 'warning'
   // 右侧价格/酬劳展示
   price?: string
+  // 描述文字
+  description?: string
+  // 地点
+  location?: string
   // 底部信息行
   meta?: string[]
   // 是否可点击
@@ -39,8 +43,15 @@ defineEmits<{
       </div>
       <span v-if="price" class="card-price">{{ price }}</span>
     </div>
+    <div v-if="description || location" class="card-desc">
+      <span v-if="location">📍 {{ location }}</span>
+      <span v-if="description">{{ description }}</span>
+    </div>
     <div v-if="meta && meta.length > 0" class="card-meta">
       <span v-for="(item, index) in meta" :key="index">{{ item }}</span>
+    </div>
+    <div v-if="$slots.footer" class="card-footer" @click.stop>
+      <slot name="footer" />
     </div>
   </div>
 </template>
@@ -119,11 +130,26 @@ defineEmits<{
   flex-shrink: 0;
 }
 
+.card-desc {
+  display: flex;
+  gap: 12px;
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+
 .card-meta {
   display: flex;
   gap: 16px;
   font-size: 12px;
   color: #999;
   flex-wrap: wrap;
+}
+
+.card-footer {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 </style>

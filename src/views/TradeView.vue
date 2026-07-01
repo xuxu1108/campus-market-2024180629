@@ -5,8 +5,10 @@ import { useRouter } from 'vue-router'
 import { getTrades, type Trade } from '@/api/trade'
 import ItemCard from '@/components/ItemCard.vue'
 import EmptyState from '@/components/EmptyState.vue'
+import { useFavoriteStore } from '@/stores/favorite'
 
 const router = useRouter()
+const favoriteStore = useFavoriteStore()
 
 // 商品列表（响应式）
 const goodsList = ref<Trade[]>([])
@@ -72,7 +74,22 @@ const statusTagMap: Record<string, { text: string; type: 'success' | 'warning' |
         :meta="[`📍 ${item.location}`, `🕐 ${item.publishTime}`, `${item.condition}`]"
         :clickable="true"
         @click="goDetail(item.id)"
-      />
+      >
+        <template #footer>
+          <button
+            class="favorite-btn"
+            @click="favoriteStore.toggleFavorite({
+              id: item.id,
+              type: 'trade',
+              title: item.title,
+              description: item.description || '',
+              location: item.location
+            })"
+          >
+            {{ favoriteStore.isFavorite('trade', item.id) ? '已收藏' : '收藏' }}
+          </button>
+        </template>
+      </ItemCard>
     </div>
 
     <!-- 空状态 -->
@@ -130,5 +147,20 @@ const statusTagMap: Record<string, { text: string; type: 'success' | 'warning' |
 .goods-list {
   list-style: none;
   padding: 0;
+}
+
+.favorite-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 6px 12px;
+  cursor: pointer;
+  background: #f3f4f6;
+  color: #374151;
+  font-size: 13px;
+}
+
+.favorite-btn:hover {
+  background: #fee2e2;
+  color: #e74c3c;
 }
 </style>
