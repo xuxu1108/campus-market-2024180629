@@ -123,7 +123,7 @@
 
 ## 5. Git 提交检查
 
-### 当前提交记录
+### 当前提交记录（Day1 - Day6）
 
 ```
 b37ed5c Day6: add mock auth and improve user experience
@@ -267,4 +267,4 @@ c30e7e1 refactor: rename quick start guide
 
 ---
 
-> Day7 综合验收完成。项目可运行、可演示、可构建、证据完整。
+> Day7 综合验收完成。
