@@ -1,42 +1,70 @@
 <script setup lang="ts">
-// 二手交易页 — 从 API 获取商品列表并展示
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { getTrades, type Trade } from '@/api/trade'
 import ItemCard from '@/components/ItemCard.vue'
 import EmptyState from '@/components/EmptyState.vue'
+import LoadingState from '@/components/LoadingState.vue'
+import ErrorState from '@/components/ErrorState.vue'
+import SearchBar from '@/components/SearchBar.vue'
 import { useFavoriteStore } from '@/stores/favorite'
 
 const router = useRouter()
 const favoriteStore = useFavoriteStore()
 
-// 商品列表（响应式）
 const goodsList = ref<Trade[]>([])
-// 当前筛选分类
+const loading = ref(false)
+const error = ref(false)
+const keyword = ref('')
 const activeFilter = ref('全部')
 
 const categories = ['全部', '教材', '数码', '生活', '出行']
 
-// 按分类过滤
 const filteredList = computed(() => {
-  if (activeFilter.value === '全部') return goodsList.value
-  return goodsList.value.filter((item) => item.category === activeFilter.value)
+  const value = keyword.value.trim()
+
+  let list = goodsList.value
+
+  if (activeFilter.value !== '全部') {
+    list = list.filter((item) => item.category === activeFilter.value)
+  }
+
+  if (value) {
+    list = list.filter((item) => {
+      return (
+        item.title.includes(value) ||
+        item.category.includes(value) ||
+        item.location.includes(value) ||
+        (item.description && item.description.includes(value))
+      )
+    })
+  }
+
+  return list
 })
 
-// 页面挂载时请求数据
-onMounted(async () => {
+async function loadTrades() {
+  loading.value = true
+  error.value = false
+
   try {
     goodsList.value = await getTrades()
   } catch (err) {
     console.error('获取二手交易数据失败:', err)
+    error.value = true
+  } finally {
+    loading.value = false
   }
+}
+
+onMounted(() => {
+  loadTrades()
 })
 
 const goDetail = (id: number) => {
   router.push(`/detail/${id}`)
 }
 
-// 状态标签映射
 const statusTagMap: Record<string, { text: string; type: 'success' | 'warning' | 'primary' }> = {
   open: { text: '在售', type: 'success' },
   closed: { text: '已售', type: 'warning' },
@@ -48,6 +76,12 @@ const statusTagMap: Record<string, { text: string; type: 'success' | 'warning' |
   <section class="trade">
     <h2 class="section-title">🛒 二手交易</h2>
     <p class="section-desc">发现身边的二手好物，物尽其用</p>
+
+    <!-- 搜索栏 -->
+    <SearchBar
+      v-model="keyword"
+      placeholder="搜索商品标题、分类、地点或描述"
+    />
 
     <!-- 分类筛选 -->
     <div class="filters">
@@ -62,8 +96,29 @@ const statusTagMap: Record<string, { text: string; type: 'success' | 'warning' |
       </button>
     </div>
 
+    <!-- 加载状态 -->
+    <LoadingState
+      v-if="loading"
+      text="正在加载二手交易信息..."
+    />
+
+    <!-- 错误状态 -->
+    <ErrorState
+      v-else-if="error"
+      message="二手交易数据加载失败，请检查 Mock 服务是否正常运行。"
+      show-retry
+      @retry="loadTrades"
+    />
+
+    <!-- 空状态 -->
+    <EmptyState
+      v-else-if="filteredList.length === 0"
+      message="暂无符合条件的二手交易信息"
+      icon="🛒"
+    />
+
     <!-- 商品列表 -->
-    <div v-if="filteredList.length > 0" class="goods-list">
+    <div v-else class="goods-list">
       <ItemCard
         v-for="item in filteredList"
         :key="item.id"
@@ -78,6 +133,7 @@ const statusTagMap: Record<string, { text: string; type: 'success' | 'warning' |
         <template #footer>
           <button
             class="favorite-btn"
+            :class="{ active: favoriteStore.isFavorite('trade', item.id) }"
             @click="favoriteStore.toggleFavorite({
               id: item.id,
               type: 'trade',
@@ -91,13 +147,6 @@ const statusTagMap: Record<string, { text: string; type: 'success' | 'warning' |
         </template>
       </ItemCard>
     </div>
-
-    <!-- 空状态 -->
-    <EmptyState
-      v-else
-      message="暂无商品信息"
-      icon="🛒"
-    />
   </section>
 </template>
 
@@ -159,8 +208,8 @@ const statusTagMap: Record<string, { text: string; type: 'success' | 'warning' |
   font-size: 13px;
 }
 
-.favorite-btn:hover {
-  background: #fee2e2;
-  color: #e74c3c;
+.favorite-btn.active {
+  background: #dbeafe;
+  color: #2563eb;
 }
 </style>

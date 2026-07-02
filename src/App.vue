@@ -1,10 +1,19 @@
-<script setup lang="ts">
-import AppLayout from './components/AppLayout.vue'
-</script>
-
 <template>
   <AppLayout />
 </template>
+
+<script setup lang="ts">
+import { onMounted } from 'vue'
+
+import AppLayout from './components/AppLayout.vue'
+import { useUserStore } from './stores/user'
+
+const userStore = useUserStore()
+
+onMounted(() => {
+  userStore.restoreLogin()
+})
+</script>
 
 <style>
 /* 全局重置 */

@@ -1,7 +1,16 @@
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
+
+import AppNav from './AppNav.vue'
 import { useUserStore } from '../stores/user'
 
+const router = useRouter()
 const userStore = useUserStore()
+
+function handleLogout() {
+  userStore.logout()
+  router.push('/login')
+}
 </script>
 
 <template>
@@ -13,8 +22,16 @@ const userStore = useUserStore()
 
     <slot />
 
-    <div class="user-mini">
-      <span>{{ userStore.displayName }}</span>
+    <div class="user-actions">
+      <template v-if="userStore.isLoggedIn">
+        <RouterLink to="/user">{{ userStore.displayName }}</RouterLink>
+        <button type="button" @click="handleLogout">退出</button>
+      </template>
+
+      <template v-else>
+        <RouterLink to="/login">登录</RouterLink>
+        <RouterLink to="/register">注册</RouterLink>
+      </template>
     </div>
   </header>
 </template>
@@ -47,8 +64,24 @@ const userStore = useUserStore()
   color: rgba(255, 255, 255, 0.8);
 }
 
-.user-mini {
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   font-size: 14px;
+}
+
+.user-actions a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.user-actions button {
+  border: none;
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.2);
   color: #fff;
 }
 </style>

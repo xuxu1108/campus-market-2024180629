@@ -1,49 +1,57 @@
 <template>
   <section class="page">
-    <div class="profile-card">
-      <div class="avatar">
-        {{ userStore.displayName.slice(0, 1) }}
-      </div>
-
-      <div>
-        <h1>{{ userStore.displayName }}</h1>
-        <p>{{ userStore.userDescription }}</p>
-        <p>{{ userStore.currentUser.bio }}</p>
-      </div>
+    <div v-if="!userStore.isLoggedIn" class="panel">
+      <h1>请先登录</h1>
+      <p>登录后可以查看个人资料、我的收藏和我的发布。</p>
+      <RouterLink class="login-link" to="/login">去登录</RouterLink>
     </div>
 
-    <div class="panel">
-      <h2>我的收藏</h2>
+    <template v-else>
+      <div class="profile-card">
+        <div class="avatar">
+          {{ userStore.displayName.slice(0, 1) }}
+        </div>
 
-      <EmptyState
-        v-if="favoriteStore.favorites.length === 0"
-        message="暂无收藏内容"
-      />
-
-      <div v-else class="favorite-list">
-        <ItemCard
-          v-for="item in favoriteStore.favorites"
-          :key="`${item.type}-${item.id}`"
-          :title="item.title"
-          :description="item.description"
-          :tag="getTypeLabel(item.type)"
-          :location="item.location"
-        >
-          <template #footer>
-            <button class="remove-btn" @click="favoriteStore.removeFavorite(item.type, item.id)">
-              取消收藏
-            </button>
-          </template>
-        </ItemCard>
+        <div>
+          <h1>{{ userStore.displayName }}</h1>
+          <p>{{ userStore.userDescription }}</p>
+          <p>{{ userStore.currentUser?.bio }}</p>
+        </div>
       </div>
-    </div>
 
-    <div class="panel">
-      <h2>我的发布</h2>
-      <p class="hint">
-        本模块用于展示当前用户发布过的信息。Day5 阶段可先完成结构展示，后续可继续与接口数据联动。
-      </p>
-    </div>
+      <div class="panel">
+        <h2>我的收藏</h2>
+
+        <EmptyState
+          v-if="favoriteStore.favorites.length === 0"
+          message="暂无收藏内容"
+        />
+
+        <div v-else class="favorite-list">
+          <ItemCard
+            v-for="item in favoriteStore.favorites"
+            :key="`${item.type}-${item.id}`"
+            :title="item.title"
+            :description="item.description"
+            :tag="getTypeLabel(item.type)"
+            :location="item.location"
+          >
+            <template #footer>
+              <button class="remove-btn" @click="favoriteStore.removeFavorite(item.type, item.id)">
+                取消收藏
+              </button>
+            </template>
+          </ItemCard>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>我的发布</h2>
+        <p class="hint">
+          本模块用于展示当前用户发布过的信息。后续可继续与接口数据联动。
+        </p>
+      </div>
+    </template>
   </section>
 </template>
 
@@ -80,6 +88,22 @@ function getTypeLabel(type: string) {
   padding: 24px;
   border-radius: 16px;
   background: #fff;
+}
+
+.panel h1 {
+  margin: 0 0 8px;
+}
+
+.panel p {
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.login-link {
+  display: inline-block;
+  margin-top: 12px;
+  color: #2563eb;
+  text-decoration: none;
 }
 
 .profile-card {
