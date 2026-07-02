@@ -1,5 +1,5 @@
 <template>
-  <label class="form-field">
+  <label class="form-field" :class="{ 'has-error': error }">
     <span class="label">
       {{ label }}
       <em v-if="required">*</em>
@@ -7,7 +7,9 @@
 
     <slot />
 
-    <span v-if="error" class="error">{{ error }}</span>
+    <transition name="error-fade">
+      <span v-if="error" class="error">⚠ {{ error }}</span>
+    </transition>
   </label>
 </template>
 
@@ -24,22 +26,46 @@ defineProps<{
   display: flex;
   flex-direction: column;
   gap: 8px;
+  transition: padding-left var(--transition-fast);
+}
+
+.form-field.has-error {
+  border-left: 3px solid var(--color-danger);
+  padding-left: var(--space-md);
 }
 
 .label {
-  font-size: 14px;
-  color: #374151;
-  font-weight: 500;
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
 .label em {
-  color: #ef4444;
+  color: var(--color-danger);
   font-style: normal;
-  margin-left: 4px;
+  margin-left: 2px;
 }
 
 .error {
-  color: #ef4444;
-  font-size: 13px;
+  color: var(--color-danger);
+  font-size: var(--text-xs);
+  font-weight: 500;
+}
+
+.error-fade-enter-active {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.error-fade-leave-active {
+  transition: opacity 0.15s ease;
+}
+
+.error-fade-enter-from {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+.error-fade-leave-to {
+  opacity: 0;
 }
 </style>

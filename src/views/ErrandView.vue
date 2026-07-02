@@ -98,14 +98,16 @@ const taskTypeTagMap: Record<string, { text: string; tagType: 'danger' | 'succes
 }
 
 .section-title {
-  font-size: 20px;
-  margin-bottom: 4px;
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  margin-bottom: var(--space-xs);
+  color: var(--text-primary);
 }
 
 .section-desc {
-  color: #666;
-  font-size: 14px;
-  margin-bottom: 16px;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-lg);
 }
 
 .tab-bar {
@@ -115,23 +117,32 @@ const taskTypeTagMap: Record<string, { text: string; tagType: 'danger' | 'succes
 }
 
 .tab-btn {
-  padding: 6px 14px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background: #fff;
+  padding: 6px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
   cursor: pointer;
-  font-size: 13px;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: all var(--transition-fast);
 }
 
 .tab-btn:hover {
-  border-color: #409eff;
-  color: #409eff;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: var(--color-primary-bg);
 }
 
 .tab-btn.active {
-  background: #409eff;
+  background: var(--color-primary);
   color: #fff;
-  border-color: #409eff;
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.tab-btn:active {
+  transform: scale(0.97);
 }
 
 .errand-list {
@@ -141,16 +152,18 @@ const taskTypeTagMap: Record<string, { text: string; tagType: 'danger' | 'succes
 
 .favorite-btn {
   border: none;
-  border-radius: 999px;
-  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  padding: 6px 14px;
   cursor: pointer;
-  background: #f3f4f6;
-  color: #374151;
-  font-size: 13px;
+  background: var(--color-border-light);
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  transition: all var(--transition-fast);
 }
 
 .favorite-btn:hover {
-  background: #fee2e2;
-  color: #e74c3c;
+  background: var(--color-primary-bg);
+  color: var(--color-primary);
 }
 </style>

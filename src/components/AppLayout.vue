@@ -12,7 +12,11 @@ import AppNav from './AppNav.vue'
 
     <!-- 页面内容区 -->
     <main class="app-main">
-      <RouterView />
+      <RouterView v-slot="{ Component }">
+        <Transition name="fade-slide" mode="out-in">
+          <component :is="Component" />
+        </Transition>
+      </RouterView>
     </main>
   </div>
 </template>

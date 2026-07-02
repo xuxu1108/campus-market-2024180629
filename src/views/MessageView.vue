@@ -43,94 +43,113 @@ const messages = [
 }
 
 .section-title {
-  font-size: 20px;
-  margin-bottom: 4px;
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  margin-bottom: var(--space-xs);
+  color: var(--text-primary);
 }
 
 .section-desc {
-  color: #666;
-  font-size: 14px;
-  margin-bottom: 16px;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-lg);
 }
 
 .tab-bar {
   display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
 }
 
 .tab-btn {
-  padding: 6px 14px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background: #fff;
+  padding: 6px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
   cursor: pointer;
-  font-size: 13px;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: all var(--transition-fast);
 }
 
 .tab-btn:hover {
-  border-color: #409eff;
-  color: #409eff;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: var(--color-primary-bg);
 }
 
 .tab-btn.active {
-  background: #409eff;
+  background: var(--color-primary);
   color: #fff;
-  border-color: #409eff;
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-sm);
 }
 
 .message-list {
   list-style: none;
   padding: 0;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
 }
 
 .message-item {
   display: flex;
   flex-direction: column;
-  padding: 14px 0;
-  border-bottom: 1px solid #eee;
+  padding: 16px;
+  border-bottom: 1px solid var(--color-border-light);
   cursor: pointer;
+  border-left: 3px solid transparent;
+  transition: all var(--transition-fast);
+}
+
+.message-item:last-child {
+  border-bottom: none;
 }
 
 .message-item:hover {
-  background: #f5f7fa;
+  background: var(--color-primary-bg);
+  border-left-color: var(--color-primary);
 }
 
 .msg-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 4px;
+  margin-bottom: var(--space-xs);
 }
 
 .msg-type-tag {
   font-size: 11px;
-  padding: 2px 6px;
-  border-radius: 4px;
-  background: #e8f4fd;
-  color: #409eff;
-  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary-bg);
+  color: var(--color-primary);
+  font-weight: 600;
 }
 
 .msg-time {
-  font-size: 12px;
-  color: #999;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
 }
 
 .msg-title {
-  font-weight: 500;
-  font-size: 15px;
+  font-weight: 600;
+  font-size: var(--text-base);
   margin: 4px 0;
+  color: var(--text-primary);
 }
 
 .msg-preview {
-  font-size: 13px;
-  color: #666;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
 }
 
 .empty-tip {
   text-align: center;
-  color: #999;
+  color: var(--text-muted);
   margin-top: 40px;
 }
 </style>

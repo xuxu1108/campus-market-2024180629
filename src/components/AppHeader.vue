@@ -23,13 +23,13 @@ function handleLogout() {
 
     <div class="user-actions">
       <template v-if="userStore.isLoggedIn">
-        <RouterLink to="/user">{{ userStore.displayName }}</RouterLink>
-        <button type="button" @click="handleLogout">退出</button>
+        <RouterLink to="/user" class="user-link">{{ userStore.displayName }}</RouterLink>
+        <button type="button" class="logout-btn" @click="handleLogout">退出</button>
       </template>
 
       <template v-else>
-        <RouterLink to="/login">登录</RouterLink>
-        <RouterLink to="/register">注册</RouterLink>
+        <RouterLink to="/login" class="auth-link">登录</RouterLink>
+        <RouterLink to="/register" class="auth-link register-link">注册</RouterLink>
       </template>
     </div>
   </header>
@@ -37,50 +37,88 @@ function handleLogout() {
 
 <style scoped>
 .app-header {
-  height: 64px;
-  padding: 0 16px;
-  border-bottom: 1px solid #e5e7eb;
+  height: 68px;
+  padding: 0 var(--space-lg);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #409eff;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
   color: #fff;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  z-index: 10;
 }
 
 .brand {
   display: flex;
   align-items: baseline;
-  gap: 12px;
+  gap: var(--space-md);
 }
 
 .logo {
-  font-size: 20px;
-  font-weight: 700;
+  font-size: var(--text-xl);
+  font-weight: 800;
+  letter-spacing: -0.5px;
 }
 
 .slogan {
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.8);
+  font-size: var(--text-xs);
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 400;
 }
 
 .user-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 14px;
+  gap: var(--space-sm);
+  font-size: var(--text-sm);
 }
 
-.user-actions a {
+.user-link {
   color: #fff;
   text-decoration: none;
+  font-weight: 500;
+  transition: opacity var(--transition-fast);
 }
 
-.user-actions button {
+.user-link:hover {
+  opacity: 0.85;
+}
+
+.auth-link {
+  color: #fff;
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+  font-weight: 500;
+}
+
+.auth-link:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.register-link {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.register-link:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.logout-btn {
   border: none;
-  border-radius: 8px;
-  padding: 6px 10px;
+  border-radius: var(--radius-full);
+  padding: 6px 14px;
   cursor: pointer;
   background: rgba(255, 255, 255, 0.2);
   color: #fff;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.logout-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
 }
 </style>

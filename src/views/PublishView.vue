@@ -381,26 +381,32 @@ function resetForm() {
 }
 
 .page-header {
-  padding: 24px;
-  border-radius: 16px;
-  background: #fff;
+  padding: var(--space-2xl);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  border-left: 4px solid var(--color-primary);
 }
 
 .page-header h1 {
   margin: 0 0 8px;
+  font-size: var(--text-2xl);
+  font-weight: 700;
 }
 
 .page-header p {
   margin: 0;
-  color: #6b7280;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
 }
 
 .publish-form {
   display: grid;
   gap: 18px;
-  padding: 24px;
-  border-radius: 16px;
-  background: #fff;
+  padding: var(--space-2xl);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
 }
 
 input,
@@ -408,14 +414,41 @@ select,
 textarea {
   width: 100%;
   box-sizing: border-box;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
   padding: 10px 12px;
-  font-size: 14px;
+  font-size: var(--text-sm);
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  background: var(--color-surface);
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-bg);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
 }
 
 textarea {
   resize: vertical;
+  line-height: 1.6;
+}
+
+select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
 }
 
 .actions {
@@ -437,12 +470,29 @@ button:disabled {
 }
 
 .primary {
-  background: #2563eb;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
   color: #fff;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.primary:active:not(:disabled) {
+  transform: translateY(0);
 }
 
 .secondary {
-  background: #f3f4f6;
-  color: #374151;
+  background: var(--color-border-light);
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.secondary:hover {
+  background: var(--color-border);
 }
 </style>

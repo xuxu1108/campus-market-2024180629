@@ -156,41 +156,52 @@ const statusTagMap: Record<string, { text: string; type: 'success' | 'warning' |
 }
 
 .section-title {
-  font-size: 20px;
-  margin-bottom: 4px;
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  margin-bottom: var(--space-xs);
+  color: var(--text-primary);
 }
 
 .section-desc {
-  color: #666;
-  font-size: 14px;
-  margin-bottom: 16px;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-lg);
 }
 
 .filters {
   display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
   flex-wrap: wrap;
 }
 
 .filter-btn {
-  padding: 6px 14px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background: #fff;
+  padding: 6px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
   cursor: pointer;
-  font-size: 13px;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: all var(--transition-fast);
 }
 
 .filter-btn:hover {
-  border-color: #409eff;
-  color: #409eff;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: var(--color-primary-bg);
 }
 
 .filter-btn.active {
-  background: #409eff;
+  background: var(--color-primary);
   color: #fff;
-  border-color: #409eff;
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.filter-btn:active {
+  transform: scale(0.97);
 }
 
 .goods-list {
@@ -200,16 +211,24 @@ const statusTagMap: Record<string, { text: string; type: 'success' | 'warning' |
 
 .favorite-btn {
   border: none;
-  border-radius: 999px;
-  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  padding: 6px 14px;
   cursor: pointer;
-  background: #f3f4f6;
-  color: #374151;
-  font-size: 13px;
+  background: var(--color-border-light);
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.favorite-btn:hover {
+  background: var(--color-primary-bg);
+  color: var(--color-primary);
 }
 
 .favorite-btn.active {
-  background: #dbeafe;
-  color: #2563eb;
+  background: var(--color-primary-bg);
+  color: var(--color-primary);
+  font-weight: 600;
 }
 </style>

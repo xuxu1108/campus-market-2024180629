@@ -45,72 +45,108 @@ const goTo = (path: string) => {
 
 <style scoped>
 .home {
-  padding: 16px;
+  padding: var(--space-lg);
 }
 
 .section-title {
-  font-size: 20px;
-  margin-bottom: 4px;
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  margin-bottom: var(--space-xs);
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
 }
 
 .section-desc {
-  color: #666;
-  font-size: 14px;
-  margin-bottom: 20px;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-xl);
 }
 
 .category-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 24px;
+  gap: var(--space-md);
+  margin-bottom: var(--space-2xl);
 }
 
 .category-card {
-  background: #f5f7fa;
-  border-radius: 12px;
-  padding: 20px 16px;
+  border-radius: var(--radius-lg);
+  padding: 28px 16px;
   text-align: center;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all var(--transition-normal);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  border: 1px solid var(--color-border-light);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.category-card:nth-child(1) {
+  background: linear-gradient(135deg, #eff6ff, #dbeafe);
+}
+
+.category-card:nth-child(2) {
+  background: linear-gradient(135deg, #fffbeb, #fef3c7);
+}
+
+.category-card:nth-child(3) {
+  background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+}
+
+.category-card:nth-child(4) {
+  background: linear-gradient(135deg, #fef2f2, #fecaca);
 }
 
 .category-card:hover {
-  background: #e8f4fd;
-  transform: translateY(-2px);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
 }
 
 .cat-icon {
-  font-size: 32px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  display: grid;
+  place-items: center;
+  font-size: 28px;
+  box-shadow: var(--shadow-sm);
 }
 
 .cat-name {
-  font-size: 15px;
-  font-weight: 600;
-  color: #333;
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--text-primary);
 }
 
 .cat-desc {
-  font-size: 12px;
-  color: #999;
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
 }
 
 .hot-section {
-  margin-top: 8px;
+  margin-top: var(--space-sm);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
 }
 
 .hot-section h3 {
-  font-size: 16px;
-  margin-bottom: 12px;
+  font-size: var(--text-lg);
+  font-weight: 700;
+  margin-bottom: var(--space-md);
+  color: var(--text-primary);
 }
 
 .placeholder-text {
   text-align: center;
-  color: #999;
-  padding: 24px 0;
+  color: var(--text-muted);
+  padding: var(--space-2xl) 0;
+  font-size: var(--text-sm);
 }
 </style>

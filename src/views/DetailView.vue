@@ -28,53 +28,85 @@ const goodsId = route.params.id as string
 
 <style scoped>
 .detail {
-  padding: 16px;
+  padding: var(--space-lg);
+}
+.detail h2 {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  margin-bottom: var(--space-xs);
+  color: var(--text-primary);
 }
 .detail-card {
   display: flex;
-  gap: 16px;
-  margin: 16px 0;
+  gap: var(--space-lg);
+  margin: var(--space-lg) 0;
+  padding: var(--space-lg);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
 }
 .detail-image {
   width: 160px;
   height: 160px;
-  background: #f0f2f5;
+  background: linear-gradient(135deg, var(--color-primary-bg), var(--color-border-light));
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #999;
-  border-radius: 8px;
+  color: var(--text-muted);
+  border-radius: var(--radius-md);
+  font-size: 48px;
+  flex-shrink: 0;
 }
 .detail-info {
   flex: 1;
 }
+.detail-info h3 {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 8px;
+}
 .detail-price {
-  font-size: 24px;
-  color: #e74c3c;
-  font-weight: 700;
+  font-size: var(--text-2xl);
+  color: var(--color-danger);
+  font-weight: 800;
+  letter-spacing: -0.5px;
 }
 .detail-desc {
-  color: #666;
+  color: var(--text-secondary);
   margin: 8px 0;
+  font-size: var(--text-sm);
+  line-height: 1.6;
 }
 .detail-seller {
-  color: #999;
-  font-size: 14px;
+  color: var(--text-muted);
+  font-size: var(--text-sm);
 }
 .btn-buy,
 .btn-cart {
   margin: 8px 8px 0 0;
   padding: 10px 24px;
   border: none;
-  border-radius: 4px;
+  border-radius: var(--radius-full);
   cursor: pointer;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  transition: all var(--transition-fast);
 }
 .btn-buy {
-  background: #e74c3c;
+  background: linear-gradient(135deg, var(--color-danger), #dc2626);
   color: #fff;
 }
+.btn-buy:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
 .btn-cart {
-  background: #409eff;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
   color: #fff;
+}
+.btn-cart:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 </style>

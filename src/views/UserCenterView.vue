@@ -85,25 +85,35 @@ function getTypeLabel(type: string) {
 
 .profile-card,
 .panel {
-  padding: 24px;
-  border-radius: 16px;
-  background: #fff;
+  padding: var(--space-2xl);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
 }
 
 .panel h1 {
   margin: 0 0 8px;
+  font-size: var(--text-2xl);
+  font-weight: 700;
 }
 
 .panel p {
-  color: #6b7280;
+  color: var(--text-secondary);
   line-height: 1.6;
+  font-size: var(--text-sm);
 }
 
 .login-link {
   display: inline-block;
-  margin-top: 12px;
-  color: #2563eb;
+  margin-top: var(--space-md);
+  color: var(--color-primary);
   text-decoration: none;
+  font-weight: 600;
+  transition: opacity var(--transition-fast);
+}
+
+.login-link:hover {
+  opacity: 0.8;
 }
 
 .profile-card {
@@ -113,45 +123,59 @@ function getTypeLabel(type: string) {
 }
 
 .avatar {
-  width: 64px;
-  height: 64px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: #eff6ff;
-  color: #2563eb;
-  font-size: 28px;
-  font-weight: 700;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: #fff;
+  font-size: 30px;
+  font-weight: 800;
+  box-shadow: var(--shadow-md);
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+}
+
+.avatar:hover {
+  transform: scale(1.05);
 }
 
 .profile-card h1,
 .panel h2 {
   margin: 0 0 8px;
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--text-primary);
 }
 
 .profile-card p,
 .hint {
   margin: 0;
-  color: #6b7280;
+  color: var(--text-secondary);
   line-height: 1.6;
+  font-size: var(--text-sm);
 }
 
 .favorite-list {
   display: grid;
-  gap: 16px;
+  gap: var(--space-md);
 }
 
 .remove-btn {
   border: none;
-  border-radius: 999px;
-  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  padding: 6px 14px;
   cursor: pointer;
-  background: #f3f4f6;
-  color: #374151;
+  background: var(--color-border-light);
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  transition: all var(--transition-fast);
 }
 
 .remove-btn:hover {
-  background: #fee2e2;
-  color: #e74c3c;
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
 }
 </style>

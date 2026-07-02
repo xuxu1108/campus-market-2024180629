@@ -34,37 +34,44 @@ const navigateTo = (path: string) => {
 <style scoped>
 .app-nav {
   display: flex;
+  flex-direction: row;
   justify-content: space-around;
-  gap: 4px;
+  gap: 0;
+  padding: 2px;
 }
 
 .nav-btn {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 2px;
+  gap: 5px;
   background: transparent;
   border: none;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
-  padding: 6px 12px;
-  border-radius: 8px;
-  transition: all 0.2s;
-  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-normal);
+  font-size: var(--text-xs);
+  position: relative;
+  white-space: nowrap;
 }
 
 .nav-btn:hover {
   color: #fff;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .nav-btn.active {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.25);
+  color: var(--color-primary);
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+  transform: scale(1.05);
 }
 
 .nav-icon {
-  font-size: 18px;
+  font-size: 20px;
+  line-height: 1;
 }
 
 .nav-label {

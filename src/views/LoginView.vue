@@ -98,49 +98,79 @@ async function handleLogin() {
 
 .auth-card {
   width: 420px;
-  padding: 28px;
-  border-radius: 16px;
-  background: #fff;
+  padding: 32px;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-md);
+  border-top: 4px solid var(--color-primary);
 }
 
 .auth-card h1 {
   margin: 0 0 8px;
+  font-size: var(--text-2xl);
+  font-weight: 700;
 }
 
 .desc {
-  margin: 0 0 20px;
-  color: #6b7280;
+  margin: 0 0 24px;
+  color: var(--text-secondary);
   line-height: 1.6;
+  font-size: var(--text-sm);
 }
 
 .auth-form {
   display: grid;
-  gap: 16px;
+  gap: var(--space-lg);
 }
 
 input {
   width: 100%;
   box-sizing: border-box;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  padding: 10px 12px;
-  font-size: 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: 11px 16px;
+  font-size: var(--text-sm);
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-bg);
+}
+
+input::placeholder {
+  color: var(--text-muted);
 }
 
 .login-error {
   margin: 0;
-  color: #dc2626;
-  font-size: 14px;
+  color: var(--color-danger);
+  font-size: var(--text-sm);
+  font-weight: 500;
 }
 
 .primary {
   border: none;
-  border-radius: 8px;
-  padding: 11px 16px;
+  border-radius: var(--radius-full);
+  padding: 12px 16px;
   cursor: pointer;
-  background: #2563eb;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
   color: #fff;
-  font-size: 15px;
+  font-size: var(--text-base);
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.primary:active:not(:disabled) {
+  transform: translateY(0);
 }
 
 .primary:disabled {
@@ -149,8 +179,19 @@ input {
 }
 
 .switch {
-  margin: 18px 0 0;
+  margin: 20px 0 0;
   text-align: center;
-  color: #6b7280;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+}
+
+.switch a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.switch a:hover {
+  text-decoration: underline;
 }
 </style>

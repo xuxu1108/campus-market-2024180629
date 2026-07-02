@@ -1,5 +1,6 @@
 <template>
   <div class="search-bar">
+    <span class="search-icon">🔍</span>
     <input
       :value="modelValue"
       type="text"
@@ -10,6 +11,7 @@
     <button
       v-if="modelValue"
       type="button"
+      class="clear-btn"
       @click="$emit('update:modelValue', '')"
     >
       清空
@@ -41,26 +43,58 @@ function handleInput(event: Event) {
 <style scoped>
 .search-bar {
   display: flex;
-  gap: 12px;
-  padding: 16px;
-  border-radius: 12px;
-  background: #fff;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--space-md);
+}
+
+.search-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+  opacity: 0.5;
 }
 
 .search-bar input {
   flex: 1;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  padding: 10px 12px;
-  font-size: 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: 10px 16px;
+  font-size: var(--text-sm);
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  background: var(--color-bg);
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.search-bar button {
+.search-bar input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-bg);
+}
+
+.search-bar input::placeholder {
+  color: var(--text-muted);
+}
+
+.clear-btn {
   border: none;
-  border-radius: 8px;
-  padding: 0 14px;
+  border-radius: var(--radius-full);
+  padding: 8px 14px;
   cursor: pointer;
-  background: #f3f4f6;
-  color: #374151;
+  background: var(--color-border-light);
+  color: var(--text-secondary);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.clear-btn:hover {
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
 }
 </style>

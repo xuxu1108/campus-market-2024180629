@@ -10,7 +10,9 @@ defineProps<{
 
 <template>
   <div class="empty-state">
-    <div class="empty-icon">{{ icon || '📭' }}</div>
+    <div class="empty-icon-circle">
+      <span class="empty-icon">{{ icon || '📭' }}</span>
+    </div>
     <p class="empty-message">{{ message || '暂无数据' }}</p>
   </div>
 </template>
@@ -21,16 +23,30 @@ defineProps<{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 60px 20px;
+  padding: 64px var(--space-xl);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 2px dashed var(--color-border);
+}
+
+.empty-icon-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--color-primary-bg);
+  display: grid;
+  place-items: center;
+  margin-bottom: var(--space-lg);
 }
 
 .empty-icon {
-  font-size: 48px;
-  margin-bottom: 16px;
+  font-size: 36px;
+  line-height: 1;
 }
 
 .empty-message {
-  color: #999;
-  font-size: 14px;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  margin: 0;
 }
 </style>
