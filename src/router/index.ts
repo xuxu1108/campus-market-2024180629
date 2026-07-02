@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import LoginView from '@/views/LoginView.vue'
 import RegisterView from '@/views/RegisterView.vue'
+import { useUserStore } from '@/stores/user'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -46,13 +47,13 @@ const router = createRouter({
       path: '/publish',
       name: 'publish',
       component: () => import('@/views/PublishView.vue'),
-      meta: { title: '发布信息' },
+      meta: { title: '发布信息', requiresAuth: true },
     },
     {
       path: '/message',
       name: 'message',
       component: () => import('@/views/MessageView.vue'),
-      meta: { title: '消息' },
+      meta: { title: '消息', requiresAuth: true },
     },
     {
       path: '/login',
@@ -70,9 +71,30 @@ const router = createRouter({
       path: '/user',
       name: 'user',
       component: () => import('@/views/UserCenterView.vue'),
-      meta: { title: '个人中心' },
+      meta: { title: '个人中心', requiresAuth: true },
     },
   ],
+})
+
+// 全局导航守卫 - 登录检查
+router.beforeEach((to, from, next) => {
+  const userStore = useUserStore()
+
+  // 如果目标路由需要登录
+  if (to.meta.requiresAuth) {
+    // 检查用户是否已登录
+    if (!userStore.isLoggedIn) {
+      // 未登录，弹出提示并跳转到登录页
+      window.alert('请先登录账号后再进行此操作')
+      next({
+        path: '/login',
+        query: { redirect: to.fullPath }
+      })
+      return
+    }
+  }
+
+  next()
 })
 
 export default router

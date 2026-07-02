@@ -32,7 +32,16 @@
       <!-- 二手交易专属字段 -->
       <template v-if="publishType === 'trade'">
         <FormField label="商品分类" required :error="errors.category">
-          <input v-model.trim="form.category" type="text" placeholder="如：数码配件、教材资料、生活用品" />
+          <select v-model="form.category">
+            <option value="">请选择商品分类</option>
+            <option value="教材">教材</option>
+            <option value="数码">数码</option>
+            <option value="生活">生活</option>
+            <option value="出行">出行</option>
+            <option value="服饰">服饰</option>
+            <option value="美妆">美妆</option>
+            <option value="其他">其他</option>
+          </select>
         </FormField>
 
         <FormField label="价格" required :error="errors.price">
@@ -75,7 +84,15 @@
       <!-- 拼单搭子专属字段 -->
       <template v-if="publishType === 'groupBuy'">
         <FormField label="拼单类型" required :error="errors.groupType">
-          <input v-model.trim="form.groupType" type="text" placeholder="如：拼餐、资料团购、运动搭子" />
+          <select v-model="form.groupType">
+            <option value="">请选择拼单类型</option>
+            <option value="拼餐">拼餐</option>
+            <option value="拼单">拼单</option>
+            <option value="搭子">搭子</option>
+            <option value="组队">组队</option>
+            <option value="拼车">拼车</option>
+            <option value="其他">其他</option>
+          </select>
         </FormField>
 
         <FormField label="目标人数" required :error="errors.targetCount">
@@ -90,7 +107,14 @@
       <!-- 跑腿委托专属字段 -->
       <template v-if="publishType === 'errand'">
         <FormField label="任务类型" required :error="errors.taskType">
-          <input v-model.trim="form.taskType" type="text" placeholder="如：取快递、代买、代送" />
+          <select v-model="form.taskType">
+            <option value="">请选择任务类型</option>
+            <option value="取快递">取快递</option>
+            <option value="代买">代买</option>
+            <option value="代送">代送</option>
+            <option value="排队">排队</option>
+            <option value="其他">其他</option>
+          </select>
         </FormField>
 
         <FormField label="酬劳" required :error="errors.reward">

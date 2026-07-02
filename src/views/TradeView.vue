@@ -152,11 +152,11 @@ const statusTagMap: Record<string, { text: string; type: 'success' | 'warning' |
 
 <style scoped>
 .trade {
-  padding: 16px;
+  padding: 0;
 }
 
 .section-title {
-  font-size: var(--text-2xl);
+  font-size: 28px;
   font-weight: 700;
   margin-bottom: var(--space-xs);
   color: var(--text-primary);
@@ -164,19 +164,19 @@ const statusTagMap: Record<string, { text: string; type: 'success' | 'warning' |
 
 .section-desc {
   color: var(--text-secondary);
-  font-size: var(--text-sm);
-  margin-bottom: var(--space-lg);
+  font-size: var(--text-base);
+  margin-bottom: 24px;
 }
 
 .filters {
   display: flex;
   gap: var(--space-sm);
-  margin-bottom: var(--space-lg);
+  margin-bottom: 24px;
   flex-wrap: wrap;
 }
 
 .filter-btn {
-  padding: 6px 16px;
+  padding: 8px 20px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-full);
   background: var(--color-surface);
@@ -207,12 +207,15 @@ const statusTagMap: Record<string, { text: string; type: 'success' | 'warning' |
 .goods-list {
   list-style: none;
   padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 
 .favorite-btn {
   border: none;
   border-radius: var(--radius-full);
-  padding: 6px 14px;
+  padding: 8px 16px;
   cursor: pointer;
   background: var(--color-border-light);
   color: var(--text-secondary);

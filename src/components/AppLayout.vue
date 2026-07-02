@@ -23,16 +23,17 @@ import AppNav from './AppNav.vue'
 
 <style scoped>
 .app-wrapper {
-  max-width: 480px;
-  margin: 0 auto;
   min-height: 100vh;
-  background: #fff;
+  background: var(--color-bg);
   display: flex;
   flex-direction: column;
 }
 
 .app-main {
   flex: 1;
-  overflow-y: auto;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 32px;
 }
 </style>

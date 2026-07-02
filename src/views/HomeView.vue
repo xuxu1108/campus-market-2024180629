@@ -45,11 +45,11 @@ const goTo = (path: string) => {
 
 <style scoped>
 .home {
-  padding: var(--space-lg);
+  padding: 0;
 }
 
 .section-title {
-  font-size: var(--text-2xl);
+  font-size: 28px;
   font-weight: 800;
   margin-bottom: var(--space-xs);
   color: var(--text-primary);
@@ -58,27 +58,27 @@ const goTo = (path: string) => {
 
 .section-desc {
   color: var(--text-secondary);
-  font-size: var(--text-sm);
-  margin-bottom: var(--space-xl);
+  font-size: var(--text-base);
+  margin-bottom: 32px;
 }
 
 .category-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-md);
-  margin-bottom: var(--space-2xl);
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 40px;
 }
 
 .category-card {
   border-radius: var(--radius-lg);
-  padding: 28px 16px;
+  padding: 36px 20px;
   text-align: center;
   cursor: pointer;
   transition: all var(--transition-normal);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   border: 1px solid var(--color-border-light);
   box-shadow: var(--shadow-sm);
   position: relative;
@@ -102,29 +102,29 @@ const goTo = (path: string) => {
 }
 
 .category-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
   box-shadow: var(--shadow-lg);
 }
 
 .cat-icon {
-  width: 56px;
-  height: 56px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.7);
   display: grid;
   place-items: center;
-  font-size: 28px;
+  font-size: 32px;
   box-shadow: var(--shadow-sm);
 }
 
 .cat-name {
-  font-size: var(--text-base);
+  font-size: var(--text-lg);
   font-weight: 700;
   color: var(--text-primary);
 }
 
 .cat-desc {
-  font-size: var(--text-xs);
+  font-size: var(--text-sm);
   color: var(--text-secondary);
 }
 
@@ -132,12 +132,12 @@ const goTo = (path: string) => {
   margin-top: var(--space-sm);
   background: var(--color-surface);
   border-radius: var(--radius-lg);
-  padding: var(--space-lg);
+  padding: 32px;
   box-shadow: var(--shadow-sm);
 }
 
 .hot-section h3 {
-  font-size: var(--text-lg);
+  font-size: var(--text-xl);
   font-weight: 700;
   margin-bottom: var(--space-md);
   color: var(--text-primary);
@@ -146,7 +146,7 @@ const goTo = (path: string) => {
 .placeholder-text {
   text-align: center;
   color: var(--text-muted);
-  padding: var(--space-2xl) 0;
-  font-size: var(--text-sm);
+  padding: 48px 0;
+  font-size: var(--text-base);
 }
 </style>

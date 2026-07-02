@@ -94,11 +94,11 @@ const taskTypeTagMap: Record<string, { text: string; tagType: 'danger' | 'succes
 
 <style scoped>
 .errand {
-  padding: 16px;
+  padding: 0;
 }
 
 .section-title {
-  font-size: var(--text-2xl);
+  font-size: 28px;
   font-weight: 700;
   margin-bottom: var(--space-xs);
   color: var(--text-primary);
@@ -106,18 +106,18 @@ const taskTypeTagMap: Record<string, { text: string; tagType: 'danger' | 'succes
 
 .section-desc {
   color: var(--text-secondary);
-  font-size: var(--text-sm);
-  margin-bottom: var(--space-lg);
+  font-size: var(--text-base);
+  margin-bottom: 24px;
 }
 
 .tab-bar {
   display: flex;
   gap: 8px;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 }
 
 .tab-btn {
-  padding: 6px 16px;
+  padding: 8px 20px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-full);
   background: var(--color-surface);
@@ -148,12 +148,15 @@ const taskTypeTagMap: Record<string, { text: string; tagType: 'danger' | 'succes
 .errand-list {
   list-style: none;
   padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 
 .favorite-btn {
   border: none;
   border-radius: var(--radius-full);
-  padding: 6px 14px;
+  padding: 8px 16px;
   cursor: pointer;
   background: var(--color-border-light);
   color: var(--text-secondary);

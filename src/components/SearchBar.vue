@@ -44,16 +44,16 @@ function handleInput(event: Event) {
 .search-bar {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
-  padding: var(--space-md) var(--space-lg);
+  gap: var(--space-md);
+  padding: 20px 24px;
   border-radius: var(--radius-lg);
   background: var(--color-surface);
   box-shadow: var(--shadow-sm);
-  margin-bottom: var(--space-md);
+  margin-bottom: 20px;
 }
 
 .search-icon {
-  font-size: 16px;
+  font-size: 18px;
   flex-shrink: 0;
   opacity: 0.5;
 }
@@ -62,8 +62,8 @@ function handleInput(event: Event) {
   flex: 1;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-full);
-  padding: 10px 16px;
-  font-size: var(--text-sm);
+  padding: 12px 20px;
+  font-size: var(--text-base);
   font-family: var(--font-sans);
   color: var(--text-primary);
   background: var(--color-bg);
@@ -83,11 +83,11 @@ function handleInput(event: Event) {
 .clear-btn {
   border: none;
   border-radius: var(--radius-full);
-  padding: 8px 14px;
+  padding: 10px 18px;
   cursor: pointer;
   background: var(--color-border-light);
   color: var(--text-secondary);
-  font-size: var(--text-xs);
+  font-size: var(--text-sm);
   font-weight: 500;
   flex-shrink: 0;
   transition: all var(--transition-fast);

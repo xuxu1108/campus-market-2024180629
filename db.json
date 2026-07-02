@@ -9,6 +9,16 @@
       "grade": "2023级",
       "avatar": "",
       "bio": "热爱校园生活，喜欢分享闲置好物。"
+    },
+    {
+      "username": "user",
+      "password": "123456",
+      "name": "测试账号",
+      "college": "计算机学院",
+      "grade": "2023级",
+      "avatar": "",
+      "bio": "这个同学还没有填写个人简介。",
+      "id": 2
     }
   ],
   "trades": [
@@ -128,6 +138,19 @@
       "status": "open",
       "description": "原味",
       "id": 9
+    },
+    {
+      "title": "小台灯",
+      "category": "生活",
+      "price": 10,
+      "condition": "九成新",
+      "location": "宿舍",
+      "publisher": "校园用户",
+      "publishTime": "2026-07-02 03:43",
+      "image": "",
+      "status": "open",
+      "description": "公牛牌挂灯",
+      "id": 10
     }
   ],
   "lostFounds": [
@@ -282,6 +305,18 @@
       "publisher": "吃货联盟",
       "status": "done",
       "description": "食堂麻辣烫拼单，人多更实惠，一起分享美食"
+    },
+    {
+      "title": "珀莱雅防晒求拼单",
+      "type": "运动搭子",
+      "targetCount": 2,
+      "currentCount": 1,
+      "deadline": "2026-07-10T13:47",
+      "location": "宿舍",
+      "publisher": "测试账号",
+      "status": "open",
+      "description": "618求拼珀莱雅防晒",
+      "id": 8
     }
   ],
   "errands": [

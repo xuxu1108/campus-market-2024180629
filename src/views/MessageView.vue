@@ -39,11 +39,11 @@ const messages = [
 
 <style scoped>
 .message {
-  padding: 16px;
+  padding: 0;
 }
 
 .section-title {
-  font-size: var(--text-2xl);
+  font-size: 28px;
   font-weight: 700;
   margin-bottom: var(--space-xs);
   color: var(--text-primary);
@@ -51,18 +51,18 @@ const messages = [
 
 .section-desc {
   color: var(--text-secondary);
-  font-size: var(--text-sm);
-  margin-bottom: var(--space-lg);
+  font-size: var(--text-base);
+  margin-bottom: 24px;
 }
 
 .tab-bar {
   display: flex;
   gap: var(--space-sm);
-  margin-bottom: var(--space-lg);
+  margin-bottom: 24px;
 }
 
 .tab-btn {
-  padding: 6px 16px;
+  padding: 8px 20px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-full);
   background: var(--color-surface);
@@ -98,7 +98,7 @@ const messages = [
 .message-item {
   display: flex;
   flex-direction: column;
-  padding: 16px;
+  padding: 20px 24px;
   border-bottom: 1px solid var(--color-border-light);
   cursor: pointer;
   border-left: 3px solid transparent;
@@ -122,8 +122,8 @@ const messages = [
 }
 
 .msg-type-tag {
-  font-size: 11px;
-  padding: 2px 8px;
+  font-size: 12px;
+  padding: 3px 10px;
   border-radius: var(--radius-full);
   background: var(--color-primary-bg);
   color: var(--color-primary);
@@ -131,14 +131,14 @@ const messages = [
 }
 
 .msg-time {
-  font-size: var(--text-xs);
+  font-size: var(--text-sm);
   color: var(--text-muted);
 }
 
 .msg-title {
   font-weight: 600;
   font-size: var(--text-base);
-  margin: 4px 0;
+  margin: 6px 0;
   color: var(--text-primary);
 }
 
@@ -150,6 +150,7 @@ const messages = [
 .empty-tip {
   text-align: center;
   color: var(--text-muted);
-  margin-top: 40px;
+  margin-top: 60px;
+  font-size: var(--text-base);
 }
 </style>

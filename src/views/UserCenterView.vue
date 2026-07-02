@@ -80,12 +80,12 @@ function getTypeLabel(type: string) {
 .page {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
 }
 
 .profile-card,
 .panel {
-  padding: var(--space-2xl);
+  padding: 32px;
   border-radius: var(--radius-lg);
   background: var(--color-surface);
   box-shadow: var(--shadow-sm);
@@ -93,14 +93,14 @@ function getTypeLabel(type: string) {
 
 .panel h1 {
   margin: 0 0 8px;
-  font-size: var(--text-2xl);
+  font-size: 28px;
   font-weight: 700;
 }
 
 .panel p {
   color: var(--text-secondary);
   line-height: 1.6;
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
 }
 
 .login-link {
@@ -119,18 +119,18 @@ function getTypeLabel(type: string) {
 .profile-card {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 24px;
 }
 
 .avatar {
-  width: 72px;
-  height: 72px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   display: grid;
   place-items: center;
   background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
   color: #fff;
-  font-size: 30px;
+  font-size: 32px;
   font-weight: 800;
   box-shadow: var(--shadow-md);
   flex-shrink: 0;
@@ -144,7 +144,7 @@ function getTypeLabel(type: string) {
 .profile-card h1,
 .panel h2 {
   margin: 0 0 8px;
-  font-size: var(--text-xl);
+  font-size: 22px;
   font-weight: 700;
   color: var(--text-primary);
 }
@@ -159,13 +159,15 @@ function getTypeLabel(type: string) {
 
 .favorite-list {
   display: grid;
-  gap: var(--space-md);
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 20px;
 }
 
 .remove-btn {
   border: none;
   border-radius: var(--radius-full);
-  padding: 6px 14px;
+  padding: 8px 16px;
   cursor: pointer;
   background: var(--color-border-light);
   color: var(--text-secondary);

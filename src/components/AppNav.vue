@@ -5,7 +5,6 @@ const router = useRouter()
 
 const navItems = [
   { path: '/', label: '首页', icon: '🏠' },
-  { path: '/trade', label: '交易', icon: '🛒' },
   { path: '/publish', label: '发布', icon: '📝' },
   { path: '/message', label: '消息', icon: '💬' },
   { path: '/user', label: '我的', icon: '👤' },
@@ -35,8 +34,8 @@ const navigateTo = (path: string) => {
 .app-nav {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  gap: 0;
+  justify-content: center;
+  gap: 8px;
   padding: 2px;
 }
 
@@ -44,17 +43,18 @@ const navigateTo = (path: string) => {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
   background: transparent;
   border: none;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.75);
   cursor: pointer;
-  padding: 6px 10px;
+  padding: 10px 20px;
   border-radius: var(--radius-full);
   transition: all var(--transition-normal);
-  font-size: var(--text-xs);
+  font-size: var(--text-sm);
   position: relative;
   white-space: nowrap;
+  font-weight: 500;
 }
 
 .nav-btn:hover {
@@ -66,11 +66,11 @@ const navigateTo = (path: string) => {
   color: var(--color-primary);
   background: #fff;
   box-shadow: var(--shadow-sm);
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 .nav-icon {
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1;
 }
 

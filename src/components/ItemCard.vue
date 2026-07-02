@@ -61,29 +61,32 @@ defineEmits<{
 
 <style scoped>
 .item-card {
-  padding: 14px var(--space-lg);
+  padding: 20px;
   background: var(--color-surface);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
-  margin-bottom: var(--space-md);
-  border-left: 3px solid transparent;
+  margin-bottom: 0;
+  border: 1px solid var(--color-border-light);
   transition: all var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .item-card.accent-primary {
-  border-left-color: var(--color-primary);
+  border-top: 3px solid var(--color-primary);
 }
 
 .item-card.accent-danger {
-  border-left-color: var(--color-danger);
+  border-top: 3px solid var(--color-danger);
 }
 
 .item-card.accent-success {
-  border-left-color: var(--color-success);
+  border-top: 3px solid var(--color-success);
 }
 
 .item-card.accent-warning {
-  border-left-color: var(--color-warning);
+  border-top: 3px solid var(--color-warning);
 }
 
 .item-card.is-clickable {
@@ -92,32 +95,35 @@ defineEmits<{
 
 .item-card.is-clickable:hover {
   box-shadow: var(--shadow-md);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  border-color: var(--color-border);
 }
 
 .card-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: var(--space-sm);
+  align-items: flex-start;
+  margin-bottom: var(--space-md);
+  gap: 12px;
 }
 
 .card-left {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column;
+  gap: 8px;
   flex: 1;
   min-width: 0;
 }
 
 .card-tag {
   font-size: var(--text-xs);
-  padding: 3px 10px;
+  padding: 4px 12px;
   border-radius: var(--radius-full);
   font-weight: 600;
   white-space: nowrap;
   flex-shrink: 0;
   letter-spacing: 0.01em;
+  align-self: flex-start;
 }
 
 .tag-primary {
@@ -141,16 +147,19 @@ defineEmits<{
 }
 
 .card-title {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--text-primary);
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 1.4;
 }
 
 .card-price {
-  font-size: var(--text-lg);
+  font-size: 20px;
   font-weight: 800;
   color: var(--color-danger);
   white-space: nowrap;
@@ -159,24 +168,30 @@ defineEmits<{
 
 .card-desc {
   display: flex;
-  gap: var(--space-md);
+  flex-direction: column;
+  gap: 6px;
   font-size: var(--text-sm);
   color: var(--text-secondary);
-  margin-bottom: 6px;
+  margin-bottom: 12px;
+  flex: 1;
 }
 
 .card-meta {
   display: flex;
-  gap: var(--space-lg);
+  flex-wrap: wrap;
+  gap: var(--space-md);
   font-size: var(--text-xs);
   color: var(--text-muted);
-  flex-wrap: wrap;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border-light);
 }
 
 .card-footer {
-  margin-top: 10px;
+  margin-top: 12px;
   display: flex;
   align-items: center;
   gap: var(--space-sm);
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border-light);
 }
 </style>

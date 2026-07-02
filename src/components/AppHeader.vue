@@ -37,8 +37,8 @@ function handleLogout() {
 
 <style scoped>
 .app-header {
-  height: 68px;
-  padding: 0 var(--space-lg);
+  height: 72px;
+  padding: 0 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -56,13 +56,13 @@ function handleLogout() {
 }
 
 .logo {
-  font-size: var(--text-xl);
+  font-size: 22px;
   font-weight: 800;
   letter-spacing: -0.5px;
 }
 
 .slogan {
-  font-size: var(--text-xs);
+  font-size: var(--text-sm);
   color: rgba(255, 255, 255, 0.75);
   font-weight: 400;
 }
@@ -70,7 +70,7 @@ function handleLogout() {
 .user-actions {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
+  gap: var(--space-md);
   font-size: var(--text-sm);
 }
 
@@ -88,7 +88,7 @@ function handleLogout() {
 .auth-link {
   color: #fff;
   text-decoration: none;
-  padding: 6px 14px;
+  padding: 8px 18px;
   border-radius: var(--radius-full);
   transition: all var(--transition-fast);
   font-weight: 500;
@@ -109,7 +109,7 @@ function handleLogout() {
 .logout-btn {
   border: none;
   border-radius: var(--radius-full);
-  padding: 6px 14px;
+  padding: 8px 18px;
   cursor: pointer;
   background: rgba(255, 255, 255, 0.2);
   color: #fff;
