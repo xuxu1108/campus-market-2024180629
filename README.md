@@ -72,7 +72,7 @@ pnpm install
 ### 启动 Mock 服务
 
 ```bash
-pnpm mock
+npm run mock
 ```
 
 JSON Server 将在 `http://localhost:3001` 启动，提供以下 RESTful API：
@@ -86,7 +86,7 @@ JSON Server 将在 `http://localhost:3001` 启动，提供以下 RESTful API：
 ### 启动前端项目
 
 ```bash
-pnpm dev
+npm run dev
 ```
 
 浏览器访问 `http://localhost:5173`
