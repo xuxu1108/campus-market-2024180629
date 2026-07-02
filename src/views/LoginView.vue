@@ -5,8 +5,8 @@
       <p class="desc">登录后可以发布信息、收藏内容并进入个人中心。</p>
 
       <form class="auth-form" @submit.prevent="handleLogin">
-        <FormField label="用户名" required :error="errors.username">
-          <input v-model.trim="form.username" type="text" placeholder="请输入用户名" />
+        <FormField label="账号" required :error="errors.username">
+          <input v-model.trim="form.username" type="text" placeholder="请输入账号" />
         </FormField>
 
         <FormField label="密码" required :error="errors.password">
@@ -59,7 +59,7 @@ function validateForm() {
   clearErrors()
 
   if (!form.username) {
-    errors.username = '请输入用户名'
+    errors.username = '请输入账号'
   }
 
   if (!form.password) {

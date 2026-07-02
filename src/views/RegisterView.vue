@@ -5,20 +5,16 @@
       <p class="desc">创建账号后，可以发布信息、收藏内容并进入个人中心。</p>
 
       <form class="auth-form" @submit.prevent="handleRegister">
-        <FormField label="用户名" required :error="errors.username">
-          <input v-model.trim="form.username" type="text" placeholder="请输入用户名" />
+        <FormField label="账号" required :error="errors.username">
+          <input v-model.trim="form.username" type="text" placeholder="请输入账号" />
         </FormField>
 
         <FormField label="密码" required :error="errors.password">
           <input v-model.trim="form.password" type="password" placeholder="请输入密码" />
         </FormField>
 
-        <FormField label="姓名" required :error="errors.name">
-          <input v-model.trim="form.name" type="text" placeholder="请输入显示名称" />
-        </FormField>
-
-        <FormField label="学院" required :error="errors.college">
-          <input v-model.trim="form.college" type="text" placeholder="例如：计算机学院" />
+        <FormField label="昵称" required :error="errors.name">
+          <input v-model.trim="form.name" type="text" placeholder="请输入昵称" />
         </FormField>
 
         <FormField label="年级" required :error="errors.grade">
@@ -52,7 +48,6 @@ const form = reactive({
   username: '',
   password: '',
   name: '',
-  college: '',
   grade: '',
 })
 
@@ -68,7 +63,7 @@ function validateForm() {
   clearErrors()
 
   if (!form.username) {
-    errors.username = '请输入用户名'
+    errors.username = '请输入账号'
   }
 
   if (!form.password) {
@@ -78,11 +73,7 @@ function validateForm() {
   }
 
   if (!form.name) {
-    errors.name = '请输入姓名'
-  }
-
-  if (!form.college) {
-    errors.college = '请输入学院'
+    errors.name = '请输入昵称'
   }
 
   if (!form.grade) {
@@ -104,7 +95,7 @@ async function handleRegister() {
     const exists = res.data.some((user) => user.username === form.username)
 
     if (exists) {
-      errors.username = '用户名已存在'
+      errors.username = '账号已存在'
       return
     }
 
@@ -112,7 +103,7 @@ async function handleRegister() {
       username: form.username,
       password: form.password,
       name: form.name,
-      college: form.college,
+      college: '未设置',
       grade: form.grade,
       avatar: '',
       bio: '这个同学还没有填写个人简介。',
