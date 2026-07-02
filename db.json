@@ -115,6 +115,19 @@
       "status": "open",
       "description": "10元10包全新抽纸，每包100抽，东苑自提",
       "id": 8
+    },
+    {
+      "title": "5包三养火鸡面",
+      "category": "生活用品",
+      "price": 10,
+      "condition": "全新",
+      "location": "宿舍",
+      "publisher": "校园用户",
+      "publishTime": "2026-07-02 02:46",
+      "image": "",
+      "status": "open",
+      "description": "原味",
+      "id": 9
     }
   ],
   "lostFounds": [
