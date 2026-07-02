@@ -30,12 +30,6 @@ onMounted(async () => {
   }
 })
 
-// 状态标签映射
-const statusTagMap: Record<string, { text: string; type: 'success' | 'warning' | 'primary' }> = {
-  open: { text: '进行中', type: 'success' },
-  closed: { text: '已截止', type: 'warning' },
-  done: { text: '已完成', type: 'primary' },
-}
 </script>
 
 <template>
